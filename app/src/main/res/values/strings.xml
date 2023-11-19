@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">VisitCampus</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="thumbnail_text">Choose your University!</string>
+    <string name="view_all">View all</string>
+    <string name="university">University</string>
+    <string name="find_scope_button">Find Your Scope of Science</string>
+</resources>
