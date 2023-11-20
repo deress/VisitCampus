@@ -5,18 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.visitcampus.R
 import com.dicoding.visitcampus.data.model.University
 import com.dicoding.visitcampus.data.model.UniversityData
-import com.dicoding.visitcampus.databinding.FragmentHomeBinding
 import com.dicoding.visitcampus.databinding.FragmentUniversitiesBinding
+import com.dicoding.visitcampus.ui.ViewModelFactory
 
 
-class UniversitiesFragment : Fragment() {
+class UniversityFragment : Fragment() {
     private var _binding: FragmentUniversitiesBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel by viewModels<UniversityViewModel> {
+        ViewModelFactory.getInstance()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,8 +35,26 @@ class UniversitiesFragment : Fragment() {
 
         val layoutManager = LinearLayoutManager(requireActivity())
         binding.rvUniversities.layoutManager = layoutManager
+        showListUniversity(viewModel.university)
 
-        showListUniversity(UniversityData.dummyUniversity)
+
+//        viewModel.getUniversity().observe(viewLifecycleOwner) {result ->
+//            when (result) {
+//                is Result.Loading -> {
+//                    showLoading(true)
+//                }
+//                is Result.Success -> {
+//                    showListUniversity(result.data)
+//                    showLoading(false)
+//                }
+//                is Result.Error -> {
+//                    Log.d("UniversityViewModel", result.error)
+//                    showLoading(false)
+//                }
+//            }
+//        }
+
+
 
     }
 
@@ -41,5 +62,10 @@ class UniversitiesFragment : Fragment() {
         val adapter = ListUniversityAdapter()
         adapter.submitList(items)
         binding.rvUniversities.adapter = adapter
+    }
+
+    private fun showLoading(isLoading:Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+
     }
 }

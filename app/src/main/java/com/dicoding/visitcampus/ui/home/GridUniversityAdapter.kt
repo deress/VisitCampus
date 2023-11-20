@@ -1,17 +1,16 @@
-package com.dicoding.visitcampus.ui.university
-
+package com.dicoding.visitcampus.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.visitcampus.data.model.University
+import com.dicoding.visitcampus.databinding.GridUniversityBinding
 import com.dicoding.visitcampus.databinding.ItemUniversityBinding
 
-class ListUniversityAdapter: ListAdapter<University, ListUniversityAdapter.ListViewHolder>(DIFF_CALLBACK) {
-    class ListViewHolder(val binding: ItemUniversityBinding): RecyclerView.ViewHolder(binding.root) {
+class GridUniversityAdapter: ListAdapter<University, GridUniversityAdapter.ListViewHolder>(DIFF_CALLBACK) {
+    class ListViewHolder(val binding: GridUniversityBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(university: University){
             binding.imgItemPhoto.setImageResource(university.logoPhoto)
             binding.tvItemName.text = university.univName
@@ -19,7 +18,7 @@ class ListUniversityAdapter: ListAdapter<University, ListUniversityAdapter.ListV
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val binding = ItemUniversityBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = GridUniversityBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ListViewHolder(binding)
     }
 
