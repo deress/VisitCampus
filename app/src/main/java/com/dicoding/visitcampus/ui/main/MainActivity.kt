@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.dicoding.visitcampus.R
 import com.dicoding.visitcampus.databinding.ActivityMainBinding
+import com.dicoding.visitcampus.ui.chatbot.ChatbotFragment
 import com.dicoding.visitcampus.ui.home.HomeFragment
 import com.dicoding.visitcampus.ui.university.UniversitiesFragment
 import com.google.android.material.appbar.MaterialToolbar
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         val homeFragment = HomeFragment()
         val universitiesFragment = UniversitiesFragment()
+        val chatbotFragment = ChatbotFragment()
         setCurrentFragment(homeFragment)
 
         bottomNavigationView = binding.bottomNavigationView
@@ -37,6 +39,7 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.home -> setCurrentFragment(homeFragment)
                 R.id.list_university -> setCurrentFragment(universitiesFragment)
+                R.id.chatbot -> setCurrentFragment(chatbotFragment)
             }
             return@setOnItemSelectedListener true
         }

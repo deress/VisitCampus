@@ -10,6 +10,11 @@
         android:title="Universities"
         android:icon="@drawable/baseline_school_24"/>
 
+    <item
+        android:id="@+id/chatbot"
+        android:title="Chatbot"
+        android:icon="@drawable/baseline_chat_24"/>
+
 
 <!--    <item-->
 <!--        android:id="@+id/exam_practice"-->
