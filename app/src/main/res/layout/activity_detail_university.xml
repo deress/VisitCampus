@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.university.detail.DetailUniversityActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/appBarLayout">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/md_theme_light_primary">
+            <RelativeLayout
+                android:layout_width="110dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/logo_visitcampus"/>
+            </RelativeLayout>
+
+        </com.google.android.material.appbar.MaterialToolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/appBarLayout">
+
+            <ImageView
+                android:id="@+id/iv_coverUniv"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/foto_homepage" />
+
+            <ImageView
+                android:id="@+id/iv_logoUniv"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_margin="16dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_coverUniv"
+                tools:src="@drawable/logo_institut_teknologi_bandung" />
+
+            <TextView
+                android:id="@+id/tv_nameUniv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/iv_logoUniv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_logoUniv"
+                app:layout_constraintTop_toTopOf="@id/iv_logoUniv"
+                tools:text="Institut Teknologi Bandung" />
+
+            <Button
+                android:id="@+id/btn_streetView"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="16dp"
+                android:padding="24dp"
+                android:text="Street View"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_logoUniv" />
+
+            <LinearLayout
+                android:id="@+id/container_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/md_theme_light_surfaceVariant"
+                android:orientation="vertical"
+                android:padding="8dp"
+                app:layout_constraintTop_toBottomOf="@id/btn_streetView">
+
+                <TextView
+                    android:id="@+id/tv_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:text="Description"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_contentDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:justificationMode="inter_word"
+                    android:textSize="14sp"
+                    tools:text="Institut Teknologi Bandung adalah sebuah perguruan tinggi negeri yang berkedudukan di Kota Bandung. Institut Teknologi Bandung (ITB) merupakan sekolah tinggi teknik pertama di Indonesia yang didirikan pada tanggal 2 Maret 1959 yang mengemban misi pengabdian ilmu pengetahuan dan teknologi untuk memajukan Indonesia. Lahir dalam suasana penuh dinamika yang dilandasi dengan semangat perjuangan Proklamasi Kemerdekaan, ITB hadir untuk mengoptimalkan pembangunan bangsa yang maju dan bermartabat.
+ITB telah memiliki 27 program studi yang terakreditasi secara internasional (sebelas dari ABET, sebelas dari ASIIN). Rektor ITB saat ini adalah Prof. Ir. N. R. Reini Djuhraeni Wirahadikusuma, MSCE, PhD." />
+            </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/container_facultyAndMajor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:padding="8dp"
+                    android:orientation="vertical"
+                    android:background="@color/md_theme_light_surfaceVariant"
+                    app:layout_constraintTop_toBottomOf="@id/container_description">
+
+                    <TextView
+                        android:id="@+id/tv_facultyMajor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
+
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:text="Faculty and Major" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_facultyMajor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp" />
+                </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/container_collegeAchievement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/md_theme_light_surfaceVariant"
+                android:orientation="vertical"
+                android:padding="8dp"
+                app:layout_constraintTop_toBottomOf="@id/container_facultyAndMajor">
+
+                <TextView
+                    android:id="@+id/tv_collegeAchievement"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+
+                    android:text="College Achievement"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_collegeAchievement"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/container_alumnusProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/md_theme_light_surfaceVariant"
+                android:orientation="vertical"
+                android:padding="8dp"
+                app:layout_constraintTop_toBottomOf="@id/container_collegeAchievement">
+
+                <TextView
+                    android:id="@+id/tv_alumnusProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+
+                    android:text="Alumnus Profile"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_alumnusProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/container_registrationPath"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/md_theme_light_surfaceVariant"
+                android:orientation="vertical"
+                android:padding="8dp"
+                app:layout_constraintTop_toBottomOf="@id/container_alumnusProfile">
+
+                <TextView
+                    android:id="@+id/tv_registrationPath"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:text="Registration Path"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:paddingBottom="4dp"
+                    android:text="Seleksi Nasional Berdasarkan Prestasi (SNBP)"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:justificationMode="inter_word"
+                    android:text="Seleksi Nasional Berdasarkan Prestasi (SNBP) adalah seleksi masuk perguruan tinggi negeri yang dilakukan berdasarkan hasil penelusuran prestasi akademik melalui rapor serta portofolio akademik dan non akademik siswa."
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:paddingBottom="4dp"
+                    android:text="Seleksi Nasional Berbasis Tes(SNBT)"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginHorizontal="8dp"
+                    android:justificationMode="inter_word"
+                    android:text="SNBT adalah singkatan dari Seleksi Nasional Berbasis Tes merupakan seleksi yang dilakukan berdasarkan hasil nilai Tes Skolastik yang berbasis komputer. Materi yang akan diujikan pada SNBT adalah Tes Potensi Skolastik (TPS) dan Tes Literasi yang terdiri dari tujuh subtes, antara lain:
+                    \nKemampuan Penalaran Umum
+                    \nKemampuan Kuantitatif
+                    \nPengetahuan dan Pemahaman Umum
+                    \nKemampuan Memahami Bacaan dan Menulis
+                    \nPenalaran Matematika
+                    \nLiterasi Bahasa Indonesia
+                    \nLiterasi Bahasa Inggris"
+                    android:textSize="14sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_registrationPath"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp" />
+
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

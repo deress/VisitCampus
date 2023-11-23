@@ -11,5 +11,10 @@ data class University(
     val logoPhoto: Int,
     val coverPhoto: Int,
     val latitude: Double,
-    val longtitude: Double,
+    val longitude: Double,
+    val collegeAchievement: List<CollegeAchievement>,
+    val alumnusProfile: List<AlumnusProfile>,
+    val registrationPath: List<RegistrationPath>,
+    val faculty: List<Faculty>,
+
 ): Parcelable

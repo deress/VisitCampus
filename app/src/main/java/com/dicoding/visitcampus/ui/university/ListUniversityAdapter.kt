@@ -1,6 +1,7 @@
 package com.dicoding.visitcampus.ui.university
 
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -9,12 +10,19 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.visitcampus.data.model.University
 import com.dicoding.visitcampus.databinding.ItemUniversityBinding
+import com.dicoding.visitcampus.ui.university.detail.DetailUniversityActivity
 
 class ListUniversityAdapter: ListAdapter<University, ListUniversityAdapter.ListViewHolder>(DIFF_CALLBACK) {
     class ListViewHolder(val binding: ItemUniversityBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(university: University){
             binding.imgItemPhoto.setImageResource(university.logoPhoto)
             binding.tvItemName.text = university.univName
+
+            itemView.setOnClickListener {
+                val intentDetail = Intent(itemView.context, DetailUniversityActivity::class.java)
+                intentDetail.putExtra(DetailUniversityActivity.EXTRA_UNIV_NAME, university.univName)
+                itemView.context.startActivity(intentDetail)
+            }
         }
     }
 

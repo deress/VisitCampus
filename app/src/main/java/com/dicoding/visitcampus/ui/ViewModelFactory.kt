@@ -7,6 +7,7 @@ import com.dicoding.visitcampus.data.VisitCampusRepository
 import com.dicoding.visitcampus.di.Injection
 import com.dicoding.visitcampus.ui.home.HomeViewModel
 import com.dicoding.visitcampus.ui.university.UniversityViewModel
+import com.dicoding.visitcampus.ui.university.detail.DetailViewModel
 
 class ViewModelFactory private constructor(private val repository: VisitCampusRepository) : ViewModelProvider.NewInstanceFactory() {
 
@@ -18,6 +19,9 @@ class ViewModelFactory private constructor(private val repository: VisitCampusRe
             }
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
                 HomeViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(DetailViewModel::class.java) -> {
+                DetailViewModel(repository) as T
             }
 
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

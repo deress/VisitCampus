@@ -13,6 +13,10 @@
         android:theme="@style/Theme.VisitCampus"
         tools:targetApi="31">
         <activity
+            android:name=".ui.university.detail.DetailUniversityActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.main.MainActivity" />
+        <activity
             android:name=".ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
