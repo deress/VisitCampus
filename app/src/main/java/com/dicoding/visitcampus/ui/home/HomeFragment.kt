@@ -33,6 +33,7 @@ class HomeFragment : Fragment() {
             activity?.let{
                 val intent = Intent (it, MajorRecomendationActivity::class.java)
                 it.startActivity(intent)
+                it.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
             }
         }
     }

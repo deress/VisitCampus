@@ -53,8 +53,10 @@
         android:layout_marginEnd="16dp"
         android:text="MAJOR RECOMENDATION"
         android:textColor="@color/md_theme_light_primary"
-        android:textSize="24sp"
+        android:textSize="22sp"
         android:textStyle="bold"
+        android:alpha="0"
+        tools:alpha="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/appBarLayout" />
@@ -69,6 +71,8 @@
         android:text="Types of cuisines  you most interested in?"
         android:textColor="#001E00"
         android:textSize="32sp"
+        android:alpha="0"
+        tools:alpha="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tv_major_recomendation"
         app:layout_constraintTop_toBottomOf="@+id/tv_major_recomendation" />
@@ -83,12 +87,14 @@
         android:text="This will help us curate more recipe experiences for you."
         android:textColor="#354D35"
         android:textSize="16sp"
+        android:alpha="0"
+        tools:alpha="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tv_text1"
         app:layout_constraintTop_toBottomOf="@+id/tv_text1" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/et_message_box"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginStart="16dp"
@@ -100,6 +106,8 @@
         android:inputType="text|textMultiLine"
         android:padding="12dp"
         android:textSize="18sp"
+        android:alpha="0"
+        tools:alpha="1"
         app:layout_constraintEnd_toEndOf="@+id/tv_text2"
         app:layout_constraintStart_toStartOf="@+id/tv_text2"
         app:layout_constraintTop_toBottomOf="@+id/tv_text2" />
@@ -111,7 +119,9 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:text="CHECK"
-        app:layout_constraintEnd_toEndOf="@+id/editText"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        android:alpha="0"
+        tools:alpha="1"
+        app:layout_constraintEnd_toEndOf="@+id/et_message_box"
+        app:layout_constraintTop_toBottomOf="@+id/et_message_box" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
