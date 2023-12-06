@@ -62,7 +62,7 @@
         app:layout_constraintTop_toTopOf="@+id/appBarLayout" />
 
     <TextView
-        android:id="@+id/tv_text1"
+        android:id="@+id/tv_question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -78,7 +78,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_major_recomendation" />
 
     <TextView
-        android:id="@+id/tv_text2"
+        android:id="@+id/tv_question2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -90,8 +90,8 @@
         android:alpha="0"
         tools:alpha="1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tv_text1"
-        app:layout_constraintTop_toBottomOf="@+id/tv_text1" />
+        app:layout_constraintStart_toStartOf="@+id/tv_question"
+        app:layout_constraintTop_toBottomOf="@+id/tv_question" />
 
     <EditText
         android:id="@+id/et_message_box"
@@ -108,9 +108,9 @@
         android:textSize="18sp"
         android:alpha="0"
         tools:alpha="1"
-        app:layout_constraintEnd_toEndOf="@+id/tv_text2"
-        app:layout_constraintStart_toStartOf="@+id/tv_text2"
-        app:layout_constraintTop_toBottomOf="@+id/tv_text2" />
+        app:layout_constraintEnd_toEndOf="@+id/tv_question2"
+        app:layout_constraintStart_toStartOf="@+id/tv_question2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_question2" />
 
     <Button
         android:id="@+id/btn_check_recomendation"
@@ -118,7 +118,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
-        android:text="CHECK"
+        android:text="NEXT"
         android:alpha="0"
         tools:alpha="1"
         app:layout_constraintEnd_toEndOf="@+id/et_message_box"

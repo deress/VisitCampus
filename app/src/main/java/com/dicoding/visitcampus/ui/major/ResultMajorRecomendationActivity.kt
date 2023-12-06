@@ -46,6 +46,8 @@ class ResultMajorRecomendationActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
         this@ResultMajorRecomendationActivity.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 }
