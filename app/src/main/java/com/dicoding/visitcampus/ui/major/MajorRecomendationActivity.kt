@@ -46,6 +46,8 @@ class MajorRecomendationActivity : AppCompatActivity() {
 
         binding.btnCheckRecomendation.setOnClickListener {
             currentQuestion++
+            binding.progressBar.progress = currentQuestion
+            binding.tvProgress.text = "$currentQuestion" + "/" + "${questions!!.size}"
             Log.i("MajorRecomendationActivity", "$currentQuestion")
             if (questions.size == currentQuestion) {
                 result.add(binding.etMessageBox.text.toString())
