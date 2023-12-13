@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -21,6 +22,7 @@ class ExamQuestionActivity : AppCompatActivity(), View.OnClickListener {
     private var mCurrentPosition: Int = 1
     private var mQuestionList: ArrayList<Question>? = null
     private var mSelectedOptionPosition: Int = 0
+    private var correctTotal: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +44,9 @@ class ExamQuestionActivity : AppCompatActivity(), View.OnClickListener {
         val question = mQuestionList!!.get(mCurrentPosition - 1)
 
         defaultOptionsView()
+        Log.i("ExamQuestionActivity", "mSelectedOptionPosition: $mSelectedOptionPosition")
+        checkAnswer()
+
         if (mCurrentPosition == mQuestionList!!.size) {
             binding.btnSubmit.text = "Finish"
         } else {
@@ -56,6 +61,20 @@ class ExamQuestionActivity : AppCompatActivity(), View.OnClickListener {
         binding.tvOptionTwo.text = question.optionTwo
         binding.tvOptionThree.text = question.optionThree
         binding.tvOptionFour.text = question.optionFour
+        mSelectedOptionPosition = 0
+    }
+
+    private fun checkAnswer() {
+        if (mCurrentPosition >= 2) {
+            val questionCheck = mQuestionList!!.get(mCurrentPosition - 2)
+            if (questionCheck!!.correctOption == mSelectedOptionPosition) {
+                answerView(mSelectedOptionPosition, R.drawable.default_option_border)
+                correctTotal++
+                Log.i("ExamQuestionActivity", "True")
+            } else {
+                answerView(mSelectedOptionPosition, R.drawable.default_option_border)
+            }
+        }
     }
 
     private fun defaultOptionsView() {
@@ -92,32 +111,27 @@ class ExamQuestionActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.btn_submit -> {
                 if (mSelectedOptionPosition == 0) {
+                    Toast.makeText(this, "Please select Answer!", Toast.LENGTH_SHORT).show()
+                } else {
                     mCurrentPosition++
                     when {
                         mCurrentPosition <= mQuestionList!!.size -> {
                             setQuestion()
+                            Log.i("ExamQuestionActivity", "correctTotal: $correctTotal")
                         }
                         else -> {
+                            checkAnswer()
+                            Log.i("ExamQuestionActivity", "correctTotal: $correctTotal")
                             Toast.makeText(
                                 this,
                                 "You have successfully completed the Exam", Toast.LENGTH_SHORT
                             ).show()
-                            val intent = Intent(this, MainActivity::class.java)
+                            val intent = Intent(this, ResultQuestionActivity::class.java)
+                            intent.putExtra(ResultQuestionActivity.EXTRA_SCORE, correctTotal)
+                            intent.putExtra(ResultQuestionActivity.TOTAL_QUESTION, mQuestionList!!.size)
                             startActivity(intent)
                         }
                     }
-                } else {
-                    val question = mQuestionList?.get(mCurrentPosition - 1)
-                    if (question!!.correctOption != mSelectedOptionPosition) {
-                        answerView(mSelectedOptionPosition, R.drawable.wrong_option_border)
-                    }
-                    answerView(question.correctOption, R.drawable.correct_option_border)
-                    if (mCurrentPosition == mQuestionList!!.size) {
-                        binding.btnSubmit.text = "Finish"
-                    } else {
-                        binding.btnSubmit.text = "Go to next question"
-                    }
-                    mSelectedOptionPosition = 0
                 }
 
             }
@@ -131,7 +145,7 @@ class ExamQuestionActivity : AppCompatActivity(), View.OnClickListener {
         tv.setTypeface(tv.typeface, Typeface.BOLD)
         tv.background = ContextCompat.getDrawable(
             this,
-            R.drawable.selected_option_border
+            R.drawable.correct_option_border
         )
     }
 
