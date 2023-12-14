@@ -21,6 +21,9 @@
             android:name=".ui.major.MajorRecomendationActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.exercise.ResultQuestionActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.exercise.ExamQuestionActivity"
             android:exported="false" />
         <activity
