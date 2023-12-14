@@ -6,27 +6,38 @@ import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.core.widget.doAfterTextChanged
 import com.dicoding.visitcampus.R
+import com.dicoding.visitcampus.data.Result
+import com.dicoding.visitcampus.data.model.RequestPredictBody
 import com.dicoding.visitcampus.databinding.ActivityMajorRecomendationBinding
+import com.dicoding.visitcampus.ui.ViewModelFactory
 import com.google.android.material.appbar.MaterialToolbar
-import com.google.gson.Gson
-import com.google.gson.annotations.SerializedName
-
-data class Answers(
-    @SerializedName("answers")
-    val answers: Map<String, List<String>>
-)
 
 class MajorRecomendationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMajorRecomendationBinding
-    private val categories: Array<String> = arrayOf("1. Category one", "2. Category two", "3. Category three", "4. Category four")
-    private val questions: Array<String> = arrayOf("This is question one?", "This is question two?", "This is question three?", "This is question four?")
+    private val categories: Array<String> =
+        arrayOf(
+            "Introvert/Extrovert:",
+            "Sensing/Intuitive:",
+            "Thinking/Feeling:",
+            "Judging/Perceiving:")
+    private val questions: Array<String> =
+        arrayOf(
+            "Ketika anda merasa lelah atau stres, bagaimana anda mengatasinya? mengambil waktu sendiri atau mencari interaksi dengan orang lain untuk merasa lebih baik?",
+            "Ketika anda harus mengambil keputusan besar, bagaimana cara anda mengambil keputusan tersebut? mengandalkan logika dan analisis atau intuisi anda?",
+            "Ketika anda berada dalam suatu konflik, bagaimana cara anda menyelesaikannya? mengutamakan perasaan atau logika, fakta dan data?",
+            "Ketika memiliki jadwal yang ketat, bagaimana anda menangani hal tersebut? Lebih suka menjalani hari dengan lebih fleksibel atau membuat rencana yang terstruktur?")
     private var currentQuestion = 0
     private val result: ArrayList<String> = arrayListOf()
+    private val majorRecomendationViewModel: MajorRecomendationViewModel by viewModels {
+        ViewModelFactory.getInstance(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMajorRecomendationBinding.inflate(layoutInflater)
@@ -37,12 +48,12 @@ class MajorRecomendationActivity : AppCompatActivity() {
         supportActionBar?.apply {
             setDisplayShowTitleEnabled(false)
         }
-        val progressDialog = ProgressDialog(this@MajorRecomendationActivity)
         setRegisterEnable()
 
         binding.tvQuestion.text = categories[currentQuestion]
         binding.tvQuestion2.text = questions[currentQuestion]
         binding.etMessageBox.doAfterTextChanged { setRegisterEnable() }
+        binding.tvProgress.text = "$currentQuestion" + "/" + "${questions!!.size}"
 
         binding.btnCheckRecomendation.setOnClickListener {
             currentQuestion++
@@ -51,28 +62,38 @@ class MajorRecomendationActivity : AppCompatActivity() {
             Log.i("MajorRecomendationActivity", "$currentQuestion")
             if (questions.size == currentQuestion) {
                 result.add(binding.etMessageBox.text.toString())
-                val answers = Answers(
-                    mapOf(
-                        "EI" to listOf(result[0]),
-                        "SN" to listOf(result[1]),
-                        "TF" to listOf(result[2]),
-                        "JP" to listOf(result[3])
+                val answers = RequestPredictBody(
+                    result[0],
+                    result[1],
+                    result[2],
+                    result[3]
                     )
-                )
-                val gson = Gson()
-                val jsonResult = gson.toJson(answers)
                 Log.i("MajorRecomendationActivity", "result: $result")
-                Log.i("MajorRecomendationActivity", "jsonResult: $jsonResult")
 
-                progressDialog.setTitle("Checking")
-                progressDialog.setMessage("The system is working, please wait...")
-                progressDialog.show()
-                Handler().postDelayed({
-                    progressDialog.hide()
-                    val intent = Intent(this, ResultMajorRecomendationActivity::class.java)
-                    startActivity(intent)
-                    this@MajorRecomendationActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-                }, 5000)
+                majorRecomendationViewModel.predict(answers)
+                majorRecomendationViewModel.predictResult.observe(this) { it ->
+                    if (it != null) {
+                        when (it) {
+                            is Result.Loading -> showLoading(true)
+                            is Result.Success ->
+                            {
+                                showLoading(true)
+                                Toast.makeText(
+                                    this,
+                                    "Predict successfully.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                val intent = Intent(this, ResultMajorRecomendationActivity::class.java)
+                                intent.putExtra(ResultMajorRecomendationActivity.RESULT_RECOMENDATION, it.data)
+                                startActivity(intent)
+                                this@MajorRecomendationActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                            }
+                            is Result.Error -> {
+                                showLoading(false)
+                            }
+                        }
+                    }
+                }
             } else {
                 if (questions.size - 1 == currentQuestion) {
                     binding.btnCheckRecomendation.setText("CHECK")
@@ -97,15 +118,27 @@ class MajorRecomendationActivity : AppCompatActivity() {
     }
 
     private fun playAnimation() {
-        val tvMajorRecomendation = ObjectAnimator.ofFloat(binding.tvMajorRecomendation, View.ALPHA, 1f).setDuration(500)
-        val tvText1 = ObjectAnimator.ofFloat(binding.tvQuestion, View.ALPHA, 1f).setDuration(500)
-        val tvText2 = ObjectAnimator.ofFloat(binding.tvQuestion2, View.ALPHA, 1f).setDuration(500)
-        val etMessageBox = ObjectAnimator.ofFloat(binding.etMessageBox, View.ALPHA, 1f).setDuration(500)
-        val btnCheckRecomendation = ObjectAnimator.ofFloat(binding.btnCheckRecomendation, View.ALPHA, 1f).setDuration(500)
+        val tvMajorRecomendation = ObjectAnimator.ofFloat(binding.tvMajorRecomendation, View.ALPHA, 1f).setDuration(1000)
+        val tvText1 = ObjectAnimator.ofFloat(binding.tvQuestion, View.ALPHA, 1f).setDuration(1000)
+        val tvText2 = ObjectAnimator.ofFloat(binding.tvQuestion2, View.ALPHA, 1f).setDuration(1000)
+        val etMessageBox = ObjectAnimator.ofFloat(binding.etMessageBox, View.ALPHA, 1f).setDuration(1000)
+        val btnCheckRecomendation = ObjectAnimator.ofFloat(binding.btnCheckRecomendation, View.ALPHA, 1f).setDuration(1000)
 
         AnimatorSet().apply {
-            playSequentially(tvMajorRecomendation, tvText1, tvText2, etMessageBox, btnCheckRecomendation)
+            playTogether(tvMajorRecomendation, tvText1, tvText2, etMessageBox, btnCheckRecomendation)
             start()
+        }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        val progressDialog = ProgressDialog(this@MajorRecomendationActivity)
+        Log.i("MajorRecomendationActivity", "isLoading: $isLoading")
+        if (isLoading) {
+            progressDialog.setTitle("Checking")
+            progressDialog.setMessage("The system is working, please wait...")
+            progressDialog.show()
+        } else {
+            progressDialog.hide()
         }
     }
 

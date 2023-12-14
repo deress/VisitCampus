@@ -60,52 +60,121 @@
         tools:alpha="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/appBarLayout" />
+        app:layout_constraintTop_toTopOf="@+id/appBarLayout"
+        />
 
     <TextView
         android:id="@+id/tv_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
         android:text="Proin magna urna, malesuada eu dignissim lacinia, dapibus at lacus. Mauris placerat libero in justo fringilla tempus. Vestibulum nec elementum lacus. Morbi id dui iaculis, iaculis risus vitae, aliquet neque. Etiam luctus egestas purus ac iaculis. Proin ac placerat libero. Proin lobortis eros a lacus interdum cursus. Quisque dapibus id felis venenatis iaculis. In congue aliquam finibus. Sed id auctor lectus. Suspendisse elementum rhoncus sem interdum malesuada."
         android:textColor="#001E00"
         android:textSize="16sp"
         android:alpha="0"
         tools:alpha="1"
-        app:layout_constraintEnd_toEndOf="@+id/tv_title"
-        app:layout_constraintStart_toStartOf="@+id/tv_title"
-        app:layout_constraintTop_toBottomOf="@+id/percentage_bar" />
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
+    <TextView
+        android:id="@+id/tv_saintek"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Saintek"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:alpha="0"
+        tools:alpha="1"
+        app:layout_constraintBottom_toTopOf="@id/percentage_bar"
+        app:layout_constraintStart_toStartOf="@id/percentage_bar"/>
+
+    <TextView
+        android:id="@+id/tv_soshum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Soshum"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:alpha="0"
+        tools:alpha="1"
+        app:layout_constraintBottom_toTopOf="@id/percentage_bar"
+        app:layout_constraintEnd_toEndOf="@id/percentage_bar"/>
 
     <ProgressBar
         android:id="@+id/percentage_bar"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:indeterminateOnly="false"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:progress="90"
-        android:progressDrawable="@drawable/circle_percentage_bar"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="32dp"
         android:alpha="0"
         tools:alpha="1"
         app:layout_constraintEnd_toEndOf="@+id/tv_title"
         app:layout_constraintStart_toStartOf="@+id/tv_title"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+        app:layout_constraintTop_toBottomOf="@id/tv_result"
+        android:progressDrawable="@drawable/custom_progress_bg"/>
 
     <TextView
-        android:id="@+id/tv_progress"
+        android:id="@+id/saintek_percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="90%\nSAINTEK"
+        android:text="@string/saintek_percent"
+        android:textSize="16dp"
         android:textStyle="bold"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_marginStart="8dp"
+        android:textColor="#FFF"
         android:alpha="0"
         tools:alpha="1"
-        app:layout_constraintBottom_toBottomOf="@+id/percentage_bar"
-        app:layout_constraintEnd_toEndOf="@+id/percentage_bar"
-        app:layout_constraintStart_toStartOf="@+id/percentage_bar"
-        app:layout_constraintTop_toTopOf="@id/percentage_bar" />
+        app:layout_constraintStart_toStartOf="@id/percentage_bar"
+        app:layout_constraintTop_toTopOf="@id/percentage_bar"
+        app:layout_constraintBottom_toBottomOf="@id/percentage_bar"/>
+
+    <TextView
+        android:id="@+id/soshum_percent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/soshum_percent"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:layout_marginEnd="8dp"
+        android:alpha="0"
+        tools:alpha="1"
+        app:layout_constraintEnd_toEndOf="@id/percentage_bar"
+        app:layout_constraintTop_toTopOf="@id/percentage_bar"
+        app:layout_constraintBottom_toBottomOf="@id/percentage_bar"/>
+
+<!--    <ProgressBar-->
+<!--        android:id="@+id/percentage_bar"-->
+<!--        android:layout_width="200dp"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:indeterminateOnly="false"-->
+<!--        android:progress="90"-->
+<!--        android:progressDrawable="@drawable/circle_percentage_bar"-->
+<!--        android:alpha="0"-->
+<!--        tools:alpha="1"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/tv_title"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/tv_title"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/tv_title" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tv_progress"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="90%\nSAINTEK"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textAppearance="@style/TextAppearance.AppCompat.Large"-->
+<!--        android:alpha="0"-->
+<!--        tools:alpha="1"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/percentage_bar"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/percentage_bar"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/percentage_bar"-->
+<!--        app:layout_constraintTop_toTopOf="@id/percentage_bar" />-->
 
     <Button
         android:id="@+id/btn_finish"
@@ -116,6 +185,6 @@
         android:alpha="0"
         tools:alpha="1"
         app:layout_constraintEnd_toEndOf="@+id/tv_result"
-        app:layout_constraintTop_toBottomOf="@+id/tv_result" />
+        app:layout_constraintTop_toBottomOf="@id/percentage_bar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

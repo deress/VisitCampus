@@ -6,4 +6,6 @@
     <string name="view_all">View all</string>
     <string name="university">University</string>
     <string name="find_scope_button">Find Your Scope of Science</string>
+    <string name="saintek_percent">%d</string>
+    <string name="soshum_percent">%d</string>
 </resources>
