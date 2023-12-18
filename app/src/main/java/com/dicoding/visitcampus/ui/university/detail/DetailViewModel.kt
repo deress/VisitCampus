@@ -10,5 +10,7 @@ class DetailViewModel(private val repository: VisitCampusRepository) : ViewModel
             it.univName == name
     }
 
+    fun getUniv(id: Int) = repository.getUniv(id)
+
 
 }

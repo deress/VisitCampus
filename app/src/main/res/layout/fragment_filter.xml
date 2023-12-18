@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bottomdialog_background"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:src="@drawable/round_remove_24"
+        app:tint="@color/md_theme_light_onSurfaceVariant"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:id="@+id/tv_univType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:text="@string/university_type_title" />
+
+    <RadioGroup
+        android:id="@+id/rg_univType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="4dp"
+        android:layout_marginHorizontal="16dp"
+        android:orientation="horizontal">
+
+
+        <RadioButton
+            android:id="@+id/rb_publicUniv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:padding="8dp"
+            android:background="@drawable/custom_button_background"
+            android:button="@android:color/transparent"
+            android:text="@string/public_rb" />
+
+        <RadioButton
+            android:id="@+id/rb_privateUniv"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginEnd="8dp"
+            android:padding="8dp"
+            android:background="@drawable/custom_button_background"
+            android:button="@android:color/transparent"
+            android:text="@string/private_rb" />
+
+        <RadioButton
+            android:id="@+id/rb_allUniv"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginEnd="8dp"
+            android:textAlignment="center"
+            android:padding="8dp"
+            android:background="@drawable/custom_button_background"
+            android:button="@android:color/transparent"
+            android:text="@string/rb_all" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tv_scopeScience"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="16dp"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:text="Scope of Science" />
+
+    <RadioGroup
+        android:id="@+id/rg_scopeScience"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="4dp"
+        android:layout_marginHorizontal="16dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_science"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:padding="8dp"
+            android:background="@drawable/custom_button_background"
+            android:button="@android:color/transparent"
+            android:text="@string/science_rb" />
+
+        <RadioButton
+            android:id="@+id/rb_law"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:padding="8dp"
+            android:textAlignment="center"
+            android:background="@drawable/custom_button_background"
+            android:button="@android:color/transparent"
+            android:text="@string/law_rb" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tv_accreditation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="16dp"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:text="Accreditation" />
+
+    <RadioGroup
+        android:id="@+id/rg_accreditation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="4dp"
+        android:layout_marginHorizontal="16dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_superior"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:padding="8dp"
+            android:background="@drawable/custom_button_background"
+            android:button="@android:color/transparent"
+            android:text="RadioButton1" />
+
+        <RadioButton
+            android:id="@+id/rb_good"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:padding="8dp"
+            android:background="@drawable/custom_button_background"
+            android:button="@android:color/transparent"
+            android:text="RadioButton2" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tv_major"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="16dp"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:text="Major" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginVertical="4dp"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/custom_button_background"
+        android:button="@android:color/transparent"/>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_gravity="end"
+        android:text="Save"/>
+
+
+
+
+
+</LinearLayout>

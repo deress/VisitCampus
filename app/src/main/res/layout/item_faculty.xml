@@ -7,25 +7,42 @@
     android:layout_marginTop="6dp"
     android:layout_marginBottom="2dp">
 
-    <TextView
-        android:id="@+id/tv_facultyName"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="14sp"
-        tools:text="Fakultas Ilmu Komputer"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <TextView
-        android:id="@+id/tv_facultyDegree"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tv_facultyName"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Fakultas Ilmu Komputer" />
+
+        <ImageView
+            android:id="@+id/iv_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity=""
+            android:src="@drawable/baseline_arrow_drop_down_24"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_major"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:justificationMode="inter_word"
-        android:textStyle="bold"
-        android:textSize="14sp"
-        android:text="Akreditasi"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constraintLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

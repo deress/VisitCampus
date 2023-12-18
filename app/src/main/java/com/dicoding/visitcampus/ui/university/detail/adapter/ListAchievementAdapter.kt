@@ -6,13 +6,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.visitcampus.data.model.CollegeAchievement
+import com.dicoding.visitcampus.data.response.CollegeAchievementItem
 import com.dicoding.visitcampus.databinding.ItemCollegeAchievementBinding
 
-class ListAchievementAdapter: ListAdapter<CollegeAchievement, ListAchievementAdapter.ListViewHolder>(
+class ListAchievementAdapter: ListAdapter<CollegeAchievementItem, ListAchievementAdapter.ListViewHolder>(
     DIFF_CALLBACK
 ) {
     class ListViewHolder(val binding: ItemCollegeAchievementBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(achievement: CollegeAchievement){
+        fun bind(achievement: CollegeAchievementItem){
             binding.tvAchievementName.text = achievement.achievementName
             binding.tvAchievementDate.text = achievement.achievementDate
         }
@@ -29,11 +30,11 @@ class ListAchievementAdapter: ListAdapter<CollegeAchievement, ListAchievementAda
     }
 
     companion object  {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<CollegeAchievement>() {
-            override fun areItemsTheSame(oldItem: CollegeAchievement, newItem: CollegeAchievement): Boolean {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<CollegeAchievementItem>() {
+            override fun areItemsTheSame(oldItem: CollegeAchievementItem, newItem: CollegeAchievementItem): Boolean {
                 return oldItem == newItem
             }
-            override fun areContentsTheSame(oldItem: CollegeAchievement, newItem: CollegeAchievement): Boolean {
+            override fun areContentsTheSame(oldItem: CollegeAchievementItem, newItem: CollegeAchievementItem): Boolean {
                 return oldItem == newItem
             }
         }

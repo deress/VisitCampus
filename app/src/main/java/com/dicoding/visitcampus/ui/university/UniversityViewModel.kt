@@ -10,5 +10,5 @@ import com.dicoding.visitcampus.data.model.UniversityData
 class UniversityViewModel(private val repository: VisitCampusRepository) : ViewModel() {
     val university = UniversityData.dummyUniversity
 
-//    fun getUniversity() = repository.getUniversities()
+    fun getUniversities() = repository.getUniversities()
 }

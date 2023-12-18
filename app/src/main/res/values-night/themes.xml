@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.VisitCampus" parent="Theme.Material3.Dark">
+    <style name="Theme.VisitCampus" parent="Theme.Material3.Dark">
         <!-- Customize your dark theme here. -->
         <item name="colorPrimary">@color/md_theme_dark_primary</item>
         <item name="colorOnPrimary">@color/md_theme_dark_onPrimary</item>

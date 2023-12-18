@@ -6,6 +6,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.dicoding.visitcampus.data.VisitCampusRepository
 import com.dicoding.visitcampus.di.Injection
 import com.dicoding.visitcampus.ui.home.HomeViewModel
+import com.dicoding.visitcampus.ui.login.LoginViewModel
+import com.dicoding.visitcampus.ui.main.MainViewModel
+import com.dicoding.visitcampus.ui.register.RegisterViewModel
 import com.dicoding.visitcampus.ui.university.UniversityViewModel
 import com.dicoding.visitcampus.ui.university.detail.DetailViewModel
 
@@ -14,6 +17,15 @@ class ViewModelFactory private constructor(private val repository: VisitCampusRe
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
+            modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
+                RegisterViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
+                LoginViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(MainViewModel::class.java) -> {
+                MainViewModel(repository) as T
+            }
             modelClass.isAssignableFrom(UniversityViewModel::class.java) -> {
                 UniversityViewModel(repository) as T
             }
@@ -30,8 +42,8 @@ class ViewModelFactory private constructor(private val repository: VisitCampusRe
 
     companion object {
         @JvmStatic
-        fun getInstance(): ViewModelFactory {
-            return ViewModelFactory(Injection.provideRepository())
+        fun getInstance(context: Context): ViewModelFactory {
+            return ViewModelFactory(Injection.provideRepository(context))
         }
 
     }

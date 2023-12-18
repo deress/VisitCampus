@@ -10,7 +10,6 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/appBarLayout">
 
         <com.google.android.material.appbar.MaterialToolbar
@@ -24,7 +23,8 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/logo_visitcampus"/>
+                    android:src="@drawable/logo_visitcampus"
+                    android:contentDescription="@string/logo_visitcampus" />
             </RelativeLayout>
 
         </com.google.android.material.appbar.MaterialToolbar>
@@ -81,52 +81,68 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="16dp"
                 android:padding="24dp"
-                android:text="Street View"
+                android:text="@string/street_view"
+                android:visibility="gone"
+                tools:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_logoUniv" />
 
-            <LinearLayout
+            <androidx.cardview.widget.CardView
                 android:id="@+id/container_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="8dp"
-                android:background="@color/md_theme_light_surfaceVariant"
-                android:orientation="vertical"
-                android:padding="8dp"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:cardBackgroundColor="@color/md_theme_light_surfaceVariant"
                 app:layout_constraintTop_toBottomOf="@id/btn_streetView">
 
-                <TextView
-                    android:id="@+id/tv_description"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
-                    android:text="Description"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:padding="8dp"
+                    >
 
-                <TextView
-                    android:id="@+id/tv_contentDescription"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
-                    android:justificationMode="inter_word"
-                    android:textSize="14sp"
-                    tools:text="Institut Teknologi Bandung adalah sebuah perguruan tinggi negeri yang berkedudukan di Kota Bandung. Institut Teknologi Bandung (ITB) merupakan sekolah tinggi teknik pertama di Indonesia yang didirikan pada tanggal 2 Maret 1959 yang mengemban misi pengabdian ilmu pengetahuan dan teknologi untuk memajukan Indonesia. Lahir dalam suasana penuh dinamika yang dilandasi dengan semangat perjuangan Proklamasi Kemerdekaan, ITB hadir untuk mengoptimalkan pembangunan bangsa yang maju dan bermartabat.
+                    <TextView
+                        android:id="@+id/tv_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
+                        android:text="@string/description_univ"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_contentDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
+                        android:justificationMode="inter_word"
+                        android:textSize="14sp"
+                        tools:text="Institut Teknologi Bandung adalah sebuah perguruan tinggi negeri yang berkedudukan di Kota Bandung. Institut Teknologi Bandung (ITB) merupakan sekolah tinggi teknik pertama di Indonesia yang didirikan pada tanggal 2 Maret 1959 yang mengemban misi pengabdian ilmu pengetahuan dan teknologi untuk memajukan Indonesia. Lahir dalam suasana penuh dinamika yang dilandasi dengan semangat perjuangan Proklamasi Kemerdekaan, ITB hadir untuk mengoptimalkan pembangunan bangsa yang maju dan bermartabat.
 ITB telah memiliki 27 program studi yang terakreditasi secara internasional (sebelas dari ABET, sebelas dari ASIIN). Rektor ITB saat ini adalah Prof. Ir. N. R. Reini Djuhraeni Wirahadikusuma, MSCE, PhD." />
-            </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/container_facultyAndMajor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:cardBackgroundColor="@color/md_theme_light_surfaceVariant"
+                app:layout_constraintTop_toBottomOf="@id/container_description">
 
                 <LinearLayout
-                    android:id="@+id/container_facultyAndMajor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="8dp"
                     android:padding="8dp"
-                    android:orientation="vertical"
-                    android:background="@color/md_theme_light_surfaceVariant"
-                    app:layout_constraintTop_toBottomOf="@id/container_description">
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/tv_facultyMajor"
@@ -136,7 +152,7 @@ ITB telah memiliki 27 program studi yang terakreditasi secara internasional (seb
 
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:text="Faculty and Major" />
+                        android:text="@string/faculty_major" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_facultyMajor"
@@ -144,140 +160,166 @@ ITB telah memiliki 27 program studi yang terakreditasi secara internasional (seb
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="8dp" />
                 </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-
-            <LinearLayout
+            <androidx.cardview.widget.CardView
                 android:id="@+id/container_collegeAchievement"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:background="@color/md_theme_light_surfaceVariant"
-                android:orientation="vertical"
-                android:padding="8dp"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:cardBackgroundColor="@color/md_theme_light_surfaceVariant"
                 app:layout_constraintTop_toBottomOf="@id/container_facultyAndMajor">
 
-                <TextView
-                    android:id="@+id/tv_collegeAchievement"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
+                    android:orientation="vertical"
+                    android:padding="8dp">
 
-                    android:text="College Achievement"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/tv_collegeAchievement"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_collegeAchievement"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp" />
-            </LinearLayout>
+                        android:text="@string/college_achievement"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
-            <LinearLayout
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_collegeAchievement"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:id="@+id/container_alumnusProfile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:background="@color/md_theme_light_surfaceVariant"
-                android:orientation="vertical"
-                android:padding="8dp"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:cardBackgroundColor="@color/md_theme_light_surfaceVariant"
                 app:layout_constraintTop_toBottomOf="@id/container_collegeAchievement">
 
-                <TextView
-                    android:id="@+id/tv_alumnusProfile"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
+                    android:orientation="vertical"
+                    android:paddingTop="8dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp">
 
-                    android:text="Alumnus Profile"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/tv_alumnusProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
+                        android:text="@string/alumnus_profile"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_alumnusProfile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp" />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_alumnusProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp" />
 
-            </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-            <LinearLayout
+            <androidx.cardview.widget.CardView
                 android:id="@+id/container_registrationPath"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:background="@color/md_theme_light_surfaceVariant"
-                android:orientation="vertical"
-                android:padding="8dp"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:cardBackgroundColor="@color/md_theme_light_surfaceVariant"
                 app:layout_constraintTop_toBottomOf="@id/container_alumnusProfile">
 
-                <TextView
-                    android:id="@+id/tv_registrationPath"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
-                    android:text="Registration Path"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:padding="8dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
-                    android:paddingBottom="4dp"
-                    android:text="Seleksi Nasional Berdasarkan Prestasi (SNBP)"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/tv_registrationPath"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
+                        android:text="@string/registration_path"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
-                    android:layout_marginBottom="16dp"
-                    android:justificationMode="inter_word"
-                    android:text="Seleksi Nasional Berdasarkan Prestasi (SNBP) adalah seleksi masuk perguruan tinggi negeri yang dilakukan berdasarkan hasil penelusuran prestasi akademik melalui rapor serta portofolio akademik dan non akademik siswa."
-                    android:textSize="14sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
+                        android:paddingBottom="4dp"
+                        android:text="@string/snbp"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
-                    android:paddingBottom="4dp"
-                    android:text="Seleksi Nasional Berbasis Tes(SNBT)"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
+                        android:layout_marginBottom="16dp"
+                        android:justificationMode="inter_word"
+                        android:text="@string/snbp_content"
+                        android:textSize="14sp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginHorizontal="8dp"
-                    android:justificationMode="inter_word"
-                    android:text="SNBT adalah singkatan dari Seleksi Nasional Berbasis Tes merupakan seleksi yang dilakukan berdasarkan hasil nilai Tes Skolastik yang berbasis komputer. Materi yang akan diujikan pada SNBT adalah Tes Potensi Skolastik (TPS) dan Tes Literasi yang terdiri dari tujuh subtes, antara lain:
-                    \nKemampuan Penalaran Umum
-                    \nKemampuan Kuantitatif
-                    \nPengetahuan dan Pemahaman Umum
-                    \nKemampuan Memahami Bacaan dan Menulis
-                    \nPenalaran Matematika
-                    \nLiterasi Bahasa Indonesia
-                    \nLiterasi Bahasa Inggris"
-                    android:textSize="14sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
+                        android:paddingBottom="4dp"
+                        android:text="@string/snbt"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_registrationPath"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginHorizontal="8dp"
+                        android:justificationMode="inter_word"
+                        android:text="@string/snbt_content"
+                        android:textSize="14sp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_registrationPath"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
 
-            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        tools:visibility="visible" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -9,4 +9,5 @@ data class AlumnusProfile(
     val alumnusName: String,
     val alumnusCohort: String,
     val alumnusCareer: String,
+    val alumnusPhoto: Int,
 ):Parcelable

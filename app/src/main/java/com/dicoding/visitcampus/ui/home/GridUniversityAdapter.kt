@@ -1,25 +1,32 @@
 package com.dicoding.visitcampus.ui.home
 
+import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.dicoding.visitcampus.R
 import com.dicoding.visitcampus.data.model.University
+import com.dicoding.visitcampus.data.response.UnivItem
 import com.dicoding.visitcampus.databinding.GridUniversityBinding
 import com.dicoding.visitcampus.databinding.ItemUniversityBinding
 import com.dicoding.visitcampus.ui.university.detail.DetailUniversityActivity
 
-class GridUniversityAdapter: ListAdapter<University, GridUniversityAdapter.ListViewHolder>(DIFF_CALLBACK) {
+class GridUniversityAdapter: ListAdapter<UnivItem, GridUniversityAdapter.ListViewHolder>(DIFF_CALLBACK) {
     class ListViewHolder(val binding: GridUniversityBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(university: University){
-            binding.imgItemPhoto.setImageResource(university.logoPhoto)
+        fun bind(university: UnivItem){
+            val context = itemView.context
+            val logoResId = context.resources.getIdentifier(university.logoPhoto, "drawable", context.packageName)
+
+            binding.imgItemPhoto.setImageResource(logoResId)
             binding.tvItemName.text = university.univName
 
             itemView.setOnClickListener {
                 val intentDetail = Intent(itemView.context, DetailUniversityActivity::class.java)
-                intentDetail.putExtra(DetailUniversityActivity.EXTRA_UNIV_NAME, university.univName)
+                intentDetail.putExtra(DetailUniversityActivity.EXTRA_UNIV_ID, university.id)
                 itemView.context.startActivity(intentDetail)
             }
         }
@@ -37,11 +44,11 @@ class GridUniversityAdapter: ListAdapter<University, GridUniversityAdapter.ListV
     }
 
     companion object  {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<University>() {
-            override fun areItemsTheSame(oldItem: University, newItem: University): Boolean {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<UnivItem>() {
+            override fun areItemsTheSame(oldItem: UnivItem, newItem: UnivItem): Boolean {
                 return oldItem == newItem
             }
-            override fun areContentsTheSame(oldItem: University, newItem: University): Boolean {
+            override fun areContentsTheSame(oldItem: UnivItem, newItem: UnivItem): Boolean {
                 return oldItem == newItem
             }
         }

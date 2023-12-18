@@ -1,9 +1,59 @@
 <resources>
+    <string name="api_key">AIzaSyBxOj8T2jvIbyu_-8c9_B4-5e5RTt8HfKk</string>
     <string name="app_name">VisitCampus</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="logo_visitcampus">logo_visitcampus</string>
+    <string name="email_validation">Invalid Email</string>
+    <string name="password_validation">Password cannot be less than 8 characters!</string>
+    <string name="subtitle_register_page">Complete your data below!</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="register">REGISTER</string>
+    <string name="title_register_page">Registration</string>
+    <string name="title_login_page">Login</string>
+    <string name="message_login_page">Let\'s find your University</string>
+    <string name="login">LOGIN</string>
+    <string name="input_empty">Input cannot be empty!</string>
+
+
     <string name="thumbnail_text">Choose your University!</string>
     <string name="view_all">View all</string>
     <string name="university">University</string>
     <string name="find_scope_button">Find Your Scope of Science</string>
+    <string name="searchbar_hint">Search...</string>
+    <string name="btn_filter">Filter</string>
+    <string name="university_type_title">University Type</string>
+    <string name="public_rb">Public</string>
+    <string name="private_rb">Private</string>
+    <string name="rb_all">All</string>
+    <string name="science_rb">Science</string>
+    <string name="law_rb">Law</string>
+    <string name="registration_path">Registration Path</string>
+    <string name="snbp">Seleksi Nasional Berdasarkan Prestasi (SNBP)</string>
+    <string name="snbp_content">Seleksi Nasional Berdasarkan Prestasi (SNBP) adalah seleksi masuk perguruan tinggi negeri yang dilakukan berdasarkan hasil penelusuran prestasi akademik melalui rapor serta portofolio akademik dan non akademik siswa.</string>
+    <string name="snbt">Seleksi Nasional Berbasis Tes(SNBT)</string>
+    <string name="snbt_content">SNBT adalah singkatan dari Seleksi Nasional Berbasis Tes merupakan seleksi yang dilakukan berdasarkan hasil nilai Tes Skolastik yang berbasis komputer. Materi yang akan diujikan pada SNBT adalah Tes Potensi Skolastik (TPS) dan Tes Literasi yang terdiri dari tujuh subtes, antara lain: \nKemampuan Penalaran Umum \nKemampuan Kuantitatif \nPengetahuan dan Pemahaman Umum \nKemampuan Memahami Bacaan dan Menulis \nPenalaran Matematika \nLiterasi Bahasa Indonesia \nLiterasi Bahasa Inggris</string>
+    <string name="street_view">Street View</string>
+    <string name="description_univ">Description</string>
+    <string name="faculty_major">Faculty and Major</string>
+    <string name="college_achievement">College Achievement</string>
+    <string name="alumnus_profile">Alumnus Profile</string>
+    <string name="menu_1">Logout</string>
+    <string name="menu_2">Settings</string>
+    <string name="menu_3">Menu</string>
+
+
+    <string-array name="planets_array">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+
+
 </resources>

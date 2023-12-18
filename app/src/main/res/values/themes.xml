@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.VisitCampus" parent="Theme.Material3.Light.NoActionBar">
+    <style name="Theme.VisitCampus" parent="Theme.Material3.Light">
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/md_theme_light_primary</item>
         <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
@@ -31,7 +31,20 @@
 
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>
+
+        <item name="colorControlNormal">@color/white</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowEnterTransition">@android:transition/slide_bottom</item>
+        <item name="android:windowExitTransition">@android:transition/slide_bottom</item>
     </style>
 
-    <style name="Theme.VisitCampus" parent="Base.Theme.VisitCampus" />
+    <style name="Theme.VisitCampus.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.VisitCampus.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+<!--    <style name="Theme.VisitCampus" parent="Base.Theme.VisitCampus" />-->
 </resources>

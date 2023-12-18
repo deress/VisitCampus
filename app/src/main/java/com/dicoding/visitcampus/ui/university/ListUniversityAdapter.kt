@@ -8,19 +8,24 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 
 import androidx.recyclerview.widget.RecyclerView
+import com.dicoding.visitcampus.R
 import com.dicoding.visitcampus.data.model.University
+import com.dicoding.visitcampus.data.response.UnivItem
 import com.dicoding.visitcampus.databinding.ItemUniversityBinding
 import com.dicoding.visitcampus.ui.university.detail.DetailUniversityActivity
 
-class ListUniversityAdapter: ListAdapter<University, ListUniversityAdapter.ListViewHolder>(DIFF_CALLBACK) {
+class ListUniversityAdapter: ListAdapter<UnivItem, ListUniversityAdapter.ListViewHolder>(DIFF_CALLBACK) {
     class ListViewHolder(val binding: ItemUniversityBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(university: University){
-            binding.imgItemPhoto.setImageResource(university.logoPhoto)
+        fun bind(university: UnivItem){
+            val context = itemView.context
+            val imgResId = context.resources.getIdentifier(university.logoPhoto, "drawable", context.packageName)
+
+            binding.imgItemPhoto.setImageResource(imgResId)
             binding.tvItemName.text = university.univName
 
             itemView.setOnClickListener {
                 val intentDetail = Intent(itemView.context, DetailUniversityActivity::class.java)
-                intentDetail.putExtra(DetailUniversityActivity.EXTRA_UNIV_NAME, university.univName)
+                intentDetail.putExtra(DetailUniversityActivity.EXTRA_UNIV_ID, university.id)
                 itemView.context.startActivity(intentDetail)
             }
         }
@@ -38,11 +43,11 @@ class ListUniversityAdapter: ListAdapter<University, ListUniversityAdapter.ListV
     }
 
     companion object  {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<University>() {
-            override fun areItemsTheSame(oldItem: University, newItem: University): Boolean {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<UnivItem>() {
+            override fun areItemsTheSame(oldItem: UnivItem, newItem: UnivItem): Boolean {
                 return oldItem == newItem
             }
-            override fun areContentsTheSame(oldItem: University, newItem: University): Boolean {
+            override fun areContentsTheSame(oldItem: UnivItem, newItem: UnivItem): Boolean {
                 return oldItem == newItem
             }
         }
