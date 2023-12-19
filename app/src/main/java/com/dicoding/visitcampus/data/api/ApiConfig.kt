@@ -16,7 +16,7 @@ object ApiConfig {
             .build()
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://campusvisit.free.beeceptor.com/")
+            .baseUrl("https://visitcampus.free.beeceptor.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
@@ -24,7 +24,8 @@ object ApiConfig {
         return retrofit.create(ApiService::class.java)
     }
 
-    fun SignService(): LoginService{
+    fun signService(): LoginService{
+
         val loggingInterceptor =
             HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
         val client = OkHttpClient.Builder()
@@ -37,6 +38,9 @@ object ApiConfig {
             .build()
         return retrofit.create(LoginService::class.java)
     }
+
+
+
 }
 
 //    val authInterceptor = Interceptor { chain ->

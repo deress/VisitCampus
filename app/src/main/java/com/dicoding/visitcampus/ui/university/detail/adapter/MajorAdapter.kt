@@ -5,10 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.dicoding.visitcampus.data.model.Faculty
-import com.dicoding.visitcampus.data.model.Major
 import com.dicoding.visitcampus.data.response.MajorItem
-import com.dicoding.visitcampus.databinding.ItemFacultyBinding
 import com.dicoding.visitcampus.databinding.ItemMajorBinding
 
 class MajorAdapter: ListAdapter<MajorItem, MajorAdapter.ListViewHolder>(DIFF_CALLBACK) {

@@ -21,7 +21,16 @@ class SideMenuActivity : AppCompatActivity() {
         binding = ActivitySideMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        viewModel.getSession().observe(this){user ->
+            binding.tvEmail.text = user.email
+            binding.tvName.text = user.name
+        }
+
         with(binding) {
+            ivClose.setOnClickListener{
+                finish()
+            }
+
             setting.setOnClickListener{
                 startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
             }
@@ -32,10 +41,5 @@ class SideMenuActivity : AppCompatActivity() {
         }
 
     }
-
-
-
-
-
 
 }

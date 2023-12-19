@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.dicoding.visitcampus.data.model.CollegeAchievement
 import com.dicoding.visitcampus.data.response.CollegeAchievementItem
 import com.dicoding.visitcampus.databinding.ItemCollegeAchievementBinding
 

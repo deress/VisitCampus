@@ -1,18 +1,13 @@
 package com.dicoding.visitcampus.ui.home
 
-import android.content.Context
 import android.content.Intent
-import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.dicoding.visitcampus.R
-import com.dicoding.visitcampus.data.model.University
 import com.dicoding.visitcampus.data.response.UnivItem
 import com.dicoding.visitcampus.databinding.GridUniversityBinding
-import com.dicoding.visitcampus.databinding.ItemUniversityBinding
 import com.dicoding.visitcampus.ui.university.detail.DetailUniversityActivity
 
 class GridUniversityAdapter: ListAdapter<UnivItem, GridUniversityAdapter.ListViewHolder>(DIFF_CALLBACK) {

@@ -59,21 +59,26 @@ class LoginActivity : AppCompatActivity() {
             if (result != null) {
                 when(result) {
                     is Result.Loading -> {
+                        showLoading(true)
 
                     }
                     is Result.Success -> {
-                        viewModel.saveSession(UserModel(email, result.data.loginResult.token))
+                        viewModel.saveSession(UserModel(email, result.data.loginResult.token, result.data.loginResult.userId, result.data.loginResult.name))
+                        moveMain()
 
                     }
                     is Result.Error -> {
+                        showLoading(false)
 
                     }
                 }
             }
         }
 
-        viewModel.saveSession(UserModel(email, "masukkkk"))
-        moveMain()
+    }
+
+    private fun showLoading(isLoading:Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     private fun playAnimation() {

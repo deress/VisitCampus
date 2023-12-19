@@ -42,6 +42,7 @@ class UniversityFragment : Fragment(){
             filter.show(fragmentManager, FilterFragment.TAG)
         }
 
+
         with(binding) {
             searchView.setupWithSearchBar(searchBar)
             searchView
@@ -49,8 +50,14 @@ class UniversityFragment : Fragment(){
                 .setOnEditorActionListener { textView, actionId, event ->
                     searchBar.setText(searchView.text)
                     searchView.hide()
-                    Toast.makeText(activity, searchView.text, Toast.LENGTH_SHORT).show()
-                    false
+                    if (searchView.text.toString() == "") {
+                        viewModel.search("")
+                        false
+                    } else {
+                        val keyword = searchView.text.toString()
+                        viewModel.search(keyword)
+                        false
+                    }
                 }
         }
 
@@ -59,23 +66,29 @@ class UniversityFragment : Fragment(){
         val layoutManager = LinearLayoutManager(requireActivity())
         binding.rvUniversities.layoutManager = layoutManager
 
-        viewModel.getUniversities().observe(viewLifecycleOwner) {result ->
-            when (result) {
-                is Result.Loading -> {
-                    showLoading(true)
-                }
-                is Result.Success -> {
-                    showListUniversity(result.data.univ)
-                    showLoading(false)
-                }
-                is Result.Error -> {
-                    Log.d("UniversityViewModel", result.error)
-                    showLoading(false)
-                }
+//        viewModel.getUniversities().observe(viewLifecycleOwner) {result ->
+//            when (result) {
+//                is Result.Loading -> {
+//                    showLoading(true)
+//                }
+//                is Result.Success -> {
+//                    showListUniversity(result.data.univ)
+//                    showLoading(false)
+//                }
+//                is Result.Error -> {
+//                    Log.d("UniversityViewModel", result.error)
+//                    showLoading(false)
+//                }
+//
+//                else -> {}
+//            }
+//        }
 
-                else -> {}
-            }
+
+        viewModel.univ.observe(viewLifecycleOwner){
+            showListUniversity(it)
         }
+
     }
 
     private fun showListUniversity(items: List<UnivItem>) {

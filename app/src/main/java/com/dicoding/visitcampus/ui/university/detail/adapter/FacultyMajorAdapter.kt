@@ -1,6 +1,5 @@
 package com.dicoding.visitcampus.ui.university.detail.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.visitcampus.R
-import com.dicoding.visitcampus.data.model.Faculty
 import com.dicoding.visitcampus.data.response.FacultyItem
 import com.dicoding.visitcampus.databinding.ItemFacultyBinding
 

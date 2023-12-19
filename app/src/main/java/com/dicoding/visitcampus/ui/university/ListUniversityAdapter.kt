@@ -8,8 +8,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 
 import androidx.recyclerview.widget.RecyclerView
-import com.dicoding.visitcampus.R
-import com.dicoding.visitcampus.data.model.University
 import com.dicoding.visitcampus.data.response.UnivItem
 import com.dicoding.visitcampus.databinding.ItemUniversityBinding
 import com.dicoding.visitcampus.ui.university.detail.DetailUniversityActivity

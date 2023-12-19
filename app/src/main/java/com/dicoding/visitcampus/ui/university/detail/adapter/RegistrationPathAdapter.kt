@@ -7,10 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.visitcampus.R
-import com.dicoding.visitcampus.data.model.AlumnusProfile
-import com.dicoding.visitcampus.data.model.RegistrationPath
 import com.dicoding.visitcampus.data.response.RegistrationPathItem
-import com.dicoding.visitcampus.databinding.ItemAlumnusProfileBinding
 import com.dicoding.visitcampus.databinding.ItemRegistrationPathBinding
 
 class RegistrationPathAdapter: ListAdapter<RegistrationPathItem, RegistrationPathAdapter.ListViewHolder>(DIFF_CALLBACK) {

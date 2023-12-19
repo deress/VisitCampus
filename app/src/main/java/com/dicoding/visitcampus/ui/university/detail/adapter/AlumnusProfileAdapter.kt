@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.dicoding.visitcampus.data.model.AlumnusProfile
 import com.dicoding.visitcampus.data.response.AlumnusProfileItem
 import com.dicoding.visitcampus.databinding.ItemAlumnusProfileBinding
 
