@@ -5,8 +5,8 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class RequestPredictBody(
-    val ei_text: String,
-    val sn_text: String,
-    val tf_text: String,
-    val jp_text: String
+    val EI_text: String,
+    val SN_text: String,
+    val TF_text: String,
+    val JP_text: String
 ): Parcelable

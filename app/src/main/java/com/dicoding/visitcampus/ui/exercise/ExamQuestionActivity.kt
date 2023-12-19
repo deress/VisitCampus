@@ -9,28 +9,59 @@ import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import com.dicoding.visitcampus.R
+import com.dicoding.visitcampus.data.Result
 import com.dicoding.visitcampus.data.model.exam.Question
 import com.dicoding.visitcampus.data.model.exam.QuestionData
 import com.dicoding.visitcampus.databinding.ActivityExamQuestionBinding
+import com.dicoding.visitcampus.ui.ViewModelFactory
 import com.dicoding.visitcampus.ui.main.MainActivity
+import com.dicoding.visitcampus.ui.major.MajorRecomendationViewModel
+import kotlin.properties.Delegates
 
 class ExamQuestionActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityExamQuestionBinding
+
+    private val examViewModel: ExamViewModel by viewModels {
+        ViewModelFactory.getInstance(this)
+    }
 
     private var mCurrentPosition: Int = 1
     private var mQuestionList: ArrayList<Question>? = null
     private var mSelectedOptionPosition: Int = 0
     private var correctTotal: Int = 0
+    private var practiceId by Delegates.notNull<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityExamQuestionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        mQuestionList = QuestionData.getQuestions()
-        setQuestion()
+        practiceId = intent.getIntExtra(PRACTICE_ID, 0)
+        Log.i("ExamQuestionActivity", "response: $practiceId")
+
+        examViewModel.getExamQuestions(practiceId)
+        examViewModel.examQuestionResult.observe(this) {
+            Log.i("ExamQuestionActivity", "it: $it")
+            if (it != null) {
+                when (it) {
+                    is Result.Loading -> showLoading(true)
+                    is Result.Success ->
+                    {
+                        showLoading(false)
+                        val response = it.data
+                        Log.i("ExamQuestionActivity", "response: $response")
+                        mQuestionList = ArrayList(response)
+                        setQuestion()
+                    }
+                    is Result.Error -> {
+                        showLoading(false)
+                    }
+                }
+            }
+        }
 
         binding.tvOptionOne.setOnClickListener(this)
         binding.tvOptionTwo.setOnClickListener(this)
@@ -56,7 +87,7 @@ class ExamQuestionActivity : AppCompatActivity(), View.OnClickListener {
         binding.progressBar.progress = mCurrentPosition
         binding.tvProgress.text = "$mCurrentPosition" + "/" + "${mQuestionList!!.size}"
 
-        binding.tvQuestion.text = question.question
+        binding.tvQuestion.text = question.question_text
         binding.tvOptionOne.text = question.optionOne
         binding.tvOptionTwo.text = question.optionTwo
         binding.tvOptionThree.text = question.optionThree
@@ -129,11 +160,11 @@ class ExamQuestionActivity : AppCompatActivity(), View.OnClickListener {
                             val intent = Intent(this, ResultQuestionActivity::class.java)
                             intent.putExtra(ResultQuestionActivity.EXTRA_SCORE, correctTotal)
                             intent.putExtra(ResultQuestionActivity.TOTAL_QUESTION, mQuestionList!!.size)
+                            intent.putExtra(ResultQuestionActivity.PRACTICE_ID, practiceId)
                             startActivity(intent)
                         }
                     }
                 }
-
             }
         }
     }
@@ -172,5 +203,17 @@ class ExamQuestionActivity : AppCompatActivity(), View.OnClickListener {
                 )
             }
         }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if(isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.progressBar.visibility = View.GONE
+        }
+    }
+
+    companion object {
+        const val PRACTICE_ID = "practice_id"
     }
 }

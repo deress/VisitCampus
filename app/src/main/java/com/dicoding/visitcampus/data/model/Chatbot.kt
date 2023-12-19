@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Chatbot(
-    val id: Int?,
+    val userId: Int,
     val chat: String,
     val isUser: Boolean
 ): Parcelable

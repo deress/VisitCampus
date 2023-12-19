@@ -1,8 +1,9 @@
 package com.dicoding.visitcampus.data.model.exam
 
 data class Question(
-    val id: Int,
-    val question: String,
+    val question_id: Int,
+    val practice_id: Int,
+    val question_text: String,
     val optionOne: String,
     val optionTwo: String,
     val optionThree: String,

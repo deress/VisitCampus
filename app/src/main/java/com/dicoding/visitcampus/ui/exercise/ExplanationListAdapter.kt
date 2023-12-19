@@ -7,13 +7,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.visitcampus.data.model.exam.Exam
 import com.dicoding.visitcampus.data.model.exam.Explanation
+import com.dicoding.visitcampus.data.response.ResultExamResponse
 import com.dicoding.visitcampus.databinding.ExamItemLayoutBinding
 import com.dicoding.visitcampus.databinding.ExplanationItemLayoutBinding
 
-class ExplanationListAdapter: ListAdapter<Explanation, ExplanationListAdapter.ListViewHolder>(DIFF_CALLBACK) {
+class ExplanationListAdapter: ListAdapter<ResultExamResponse, ExplanationListAdapter.ListViewHolder>(DIFF_CALLBACK) {
     private lateinit var onItemClickCallback: OnItemClickCallback
     class ListViewHolder(val binding: ExplanationItemLayoutBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(explanation: Explanation){
+        fun bind(explanation: ResultExamResponse){
             binding.tvQuestion.text = explanation.question
             binding.tvAnswer.text = explanation.answer
             binding.tvExplanationDescription.text = explanation.explanationDescription
@@ -39,11 +40,11 @@ class ExplanationListAdapter: ListAdapter<Explanation, ExplanationListAdapter.Li
     }
 
     companion object  {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Explanation>() {
-            override fun areItemsTheSame(oldItem: Explanation, newItem: Explanation): Boolean {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ResultExamResponse>() {
+            override fun areItemsTheSame(oldItem: ResultExamResponse, newItem: ResultExamResponse): Boolean {
                 return oldItem == newItem
             }
-            override fun areContentsTheSame(oldItem: Explanation, newItem: Explanation): Boolean {
+            override fun areContentsTheSame(oldItem: ResultExamResponse, newItem: ResultExamResponse): Boolean {
                 return oldItem == newItem
             }
         }

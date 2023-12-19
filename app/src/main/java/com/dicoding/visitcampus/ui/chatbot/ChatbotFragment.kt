@@ -14,7 +14,6 @@ class ChatbotFragment : Fragment() {
     private var _binding: FragmentChatbotBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var chatbotAdapter: ChatbotAdapter
     private lateinit var chatList: ArrayList<Chatbot>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,8 +33,8 @@ class ChatbotFragment : Fragment() {
 
         binding.btnSent.setOnClickListener {
             val chat = binding.etMessageBox.text.toString()
-            chatList.add(Chatbot(null, chat, true))
-            chatList.add(Chatbot(null, chat, false))
+            chatList.add(Chatbot(1, chat, true))
+            chatList.add(Chatbot(1, chat, false))
             Log.i("ChatbotFragment", "chatList: $chatList")
             binding.etMessageBox.setText("")
         }

@@ -8,4 +8,6 @@
     <string name="find_scope_button">Find Your Scope of Science</string>
     <string name="saintek_percent">%d</string>
     <string name="soshum_percent">%d</string>
+    <string name="true_question">True: %d</string>
+    <string name="false_question">False: %d</string>
 </resources>

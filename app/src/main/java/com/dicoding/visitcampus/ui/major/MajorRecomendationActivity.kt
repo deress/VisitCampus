@@ -69,6 +69,7 @@ class MajorRecomendationActivity : AppCompatActivity() {
                     result[3]
                     )
                 Log.i("MajorRecomendationActivity", "result: $result")
+                Log.i("MajorRecomendationActivity", "answers: $answers")
 
                 majorRecomendationViewModel.predict(answers)
                 majorRecomendationViewModel.predictResult.observe(this) { it ->
