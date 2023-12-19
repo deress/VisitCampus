@@ -11,11 +11,14 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.viewModels
 import com.dicoding.visitcampus.R
 import com.dicoding.visitcampus.data.Result
-import com.dicoding.visitcampus.data.model.RequestPredictBody
+import com.dicoding.visitcampus.data.request.RequestPredictBody
 import com.dicoding.visitcampus.databinding.ActivityMajorRecomendationBinding
 import com.dicoding.visitcampus.ui.ViewModelFactory
+import com.dicoding.visitcampus.ui.main.MainActivity
+import com.dicoding.visitcampus.ui.main.MainViewModel
 import com.google.android.material.appbar.MaterialToolbar
 
 class MajorRecomendationActivity : AppCompatActivity() {
@@ -35,6 +38,9 @@ class MajorRecomendationActivity : AppCompatActivity() {
     private var currentQuestion = 0
     private val result: ArrayList<String> = arrayListOf()
     private val majorRecomendationViewModel: MajorRecomendationViewModel by viewModels {
+        ViewModelFactory.getInstance(this)
+    }
+    private val viewModel by viewModels<MainViewModel> {
         ViewModelFactory.getInstance(this)
     }
 
@@ -71,7 +77,9 @@ class MajorRecomendationActivity : AppCompatActivity() {
                 Log.i("MajorRecomendationActivity", "result: $result")
                 Log.i("MajorRecomendationActivity", "answers: $answers")
 
-                majorRecomendationViewModel.predict(answers)
+                viewModel.getSession().observe(this) {user ->
+                    majorRecomendationViewModel.predict(answers, user.userId)
+                }
                 majorRecomendationViewModel.predictResult.observe(this) { it ->
                     if (it != null) {
                         when (it) {
@@ -91,6 +99,11 @@ class MajorRecomendationActivity : AppCompatActivity() {
                             }
                             is Result.Error -> {
                                 showLoading(false)
+                                Toast.makeText(
+                                    this,
+                                    it.error,
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
                     }
@@ -145,6 +158,9 @@ class MajorRecomendationActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
         this@MajorRecomendationActivity.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 }

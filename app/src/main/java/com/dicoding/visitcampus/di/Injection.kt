@@ -19,10 +19,6 @@ object Injection {
         val examService = ApiConfig.getExamService()
         val database = UnivDatabase.getDatabase(context)
 
-
-
-
         return VisitCampusRepository.getInstance(pref, apiService, loginService, examService, database)
-
     }
 }

@@ -22,13 +22,21 @@ import com.dicoding.visitcampus.databinding.FragmentHomeBinding
 import com.dicoding.visitcampus.ui.major.MajorRecomendationActivity
 
 import com.dicoding.visitcampus.ui.ViewModelFactory
-
+import com.dicoding.visitcampus.ui.main.MainViewModel
+import com.dicoding.visitcampus.ui.major.MajorRecomendationViewModel
+import com.dicoding.visitcampus.ui.major.ResultMajorRecomendationActivity
 
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModels<HomeViewModel> {
+        ViewModelFactory.getInstance(requireContext())
+    }
+    private val mainViewModel by viewModels<MainViewModel> {
+        ViewModelFactory.getInstance(requireContext())
+    }
+    private val majorRecomendationViewModel by viewModels<MajorRecomendationViewModel> {
         ViewModelFactory.getInstance(requireContext())
     }
 
@@ -46,10 +54,20 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnRecomendation.setOnClickListener{
-            activity?.let{
-                val intent = Intent (it, MajorRecomendationActivity::class.java)
-                it.startActivity(intent)
-                it.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+            activity?.let{bind ->
+                mainViewModel.getSession().observe(viewLifecycleOwner){ user ->
+                    majorRecomendationViewModel.getMajorRecomendation(user.userId).observe(viewLifecycleOwner) {
+                        if (it != null) {
+                            val intent = Intent (requireContext(), ResultMajorRecomendationActivity::class.java)
+                            bind.startActivity(intent)
+                            bind.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                        } else {
+                            val intent = Intent (requireContext(), MajorRecomendationActivity::class.java)
+                            bind.startActivity(intent)
+                            bind.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                        }
+                    }
+                }
             }
         }
 
@@ -89,8 +107,6 @@ class HomeFragment : Fragment() {
             start()
         }
     }
-
-
 
     private fun showLoading(isLoading:Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE

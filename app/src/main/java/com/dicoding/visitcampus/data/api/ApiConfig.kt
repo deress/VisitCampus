@@ -21,7 +21,7 @@ object ApiConfig {
             .addInterceptor(authInterceptor)
             .build()
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://firmansyah-visit-campus.free.beeceptor.com/")
+            .baseUrl("https://visitcampus-model-6htnchfpxq-as.a.run.app/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

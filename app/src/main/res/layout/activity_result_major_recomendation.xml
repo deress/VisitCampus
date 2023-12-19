@@ -187,4 +187,16 @@
         app:layout_constraintEnd_toEndOf="@+id/tv_result"
         app:layout_constraintTop_toBottomOf="@id/percentage_bar" />
 
+    <Button
+        android:id="@+id/btn_try_again"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="16dp"
+        android:text="TRY AGAIN"
+        android:alpha="0"
+        tools:alpha="1"
+        app:layout_constraintEnd_toStartOf="@+id/btn_finish"
+        app:layout_constraintTop_toBottomOf="@id/percentage_bar" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
