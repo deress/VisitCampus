@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid
+        android:color="@color/md_theme_light_surfaceVariant"/>
+    <corners
+        android:topLeftRadius="26dp"
+        android:topRightRadius="26dp"/>
+    <padding
+        android:bottom="10dp"
+        android:top="10dp"
+        android:right="10dp"
+        android:left="10dp"/>
+    <stroke
+        android:width="2dp"
+        android:color="@color/md_theme_light_secondary"/>
+
+</shape>

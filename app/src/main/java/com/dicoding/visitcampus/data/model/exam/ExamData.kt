@@ -1,8 +1,6 @@
 package com.dicoding.visitcampus.data.model.exam
 
 import com.dicoding.visitcampus.R
-import com.dicoding.visitcampus.data.model.University
-
 object ExamData {
     val examList = listOf(
         Exam(1,
