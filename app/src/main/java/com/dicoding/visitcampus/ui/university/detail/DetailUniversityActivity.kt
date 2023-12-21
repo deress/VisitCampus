@@ -89,7 +89,6 @@ class DetailUniversityActivity : AppCompatActivity() {
             val logoResId = resources.getIdentifier(item.univLogo, "drawable", packageName)
             val coverResId = resources.getIdentifier(item.univCover, "drawable", packageName)
 
-
             ivCoverUniv.setImageResource(coverResId)
             ivLogoUniv.setImageResource(logoResId)
             tvNameUniv.text = item.univName

@@ -40,7 +40,6 @@ class UniversityFragment : Fragment(){
             filter.show(fragmentManager, FilterFragment.TAG)
         }
 
-
         with(binding) {
             searchView.setupWithSearchBar(searchBar)
             searchView

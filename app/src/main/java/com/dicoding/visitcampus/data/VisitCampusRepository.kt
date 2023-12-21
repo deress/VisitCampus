@@ -2,10 +2,6 @@ package com.dicoding.visitcampus.data
 
 
 
-
-
-import android.os.Build
-import android.os.ext.SdkExtensions
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
@@ -302,14 +298,11 @@ class VisitCampusRepository(
 
     fun getUniv(id: Int) = liveData {
         emit(Result.Loading)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && SdkExtensions.getExtensionVersion(
-                Build.VERSION_CODES.TIRAMISU) >= 7) {
-            try {
-                val successResponse = apiService.getDetailUniv(id)
-                emit(Result.Success(successResponse))
-            } catch (e: HttpException) {
-                emit(Result.Error("error"))
-            }
+        try {
+            val successResponse = apiService.getDetailUniv(id)
+            emit(Result.Success(successResponse))
+        } catch (e: HttpException) {
+            emit(Result.Error("error"))
         }
     }
 

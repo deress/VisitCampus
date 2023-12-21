@@ -29,7 +29,6 @@ class StreetViewActivity : AppCompatActivity() {
 
         val latitude = intent.getDoubleExtra(LATITUDE, 0.0)
         val longitude = intent.getDoubleExtra(LONGITUDE, 0.0)
-        Log.d("StreetViewActivity", "$latitude, $longitude")
 
         val streetViewFragment =
             supportFragmentManager.findFragmentById(R.id.fr_streetView) as SupportStreetViewPanoramaFragment?
