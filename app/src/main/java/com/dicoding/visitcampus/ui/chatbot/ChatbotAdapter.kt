@@ -13,7 +13,6 @@ import com.dicoding.visitcampus.data.model.chatbot.Chatbot
 
 class ChatbotAdapter(private val context: Context) :
     ListAdapter<Chatbot, RecyclerView.ViewHolder>(ChatDiffCallback()) {
-    private var recyclerView: RecyclerView? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(context)
@@ -40,6 +39,10 @@ class ChatbotAdapter(private val context: Context) :
         } else {
             2
         }
+    }
+
+    override fun getItemCount(): Int {
+        return super.getItemCount()
     }
 
     class SentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

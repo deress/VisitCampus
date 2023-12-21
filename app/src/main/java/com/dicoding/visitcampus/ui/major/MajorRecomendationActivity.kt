@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.core.widget.doAfterTextChanged
 import com.dicoding.visitcampus.R
 import com.dicoding.visitcampus.data.Result
@@ -64,14 +65,17 @@ class MajorRecomendationActivity : AppCompatActivity() {
             binding.tvProgress.text = "$currentQuestion" + "/" + "${questions!!.size}"
             Log.i("MajorRecomendationActivity", "$currentQuestion")
             if (currentQuestion == 5) {
-                val intent = Intent(this, MainActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                startActivity(intent)
-                this@MajorRecomendationActivity.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
-                Toast.makeText(this,
-                    getString(R.string.toast_predict_failed_major_recomendation), Toast.LENGTH_SHORT).show()
+                AlertDialog.Builder(this).apply {
+                    setTitle("Failed")
+                    setMessage(getString(R.string.toast_predict_failed_major_recomendation))
+                    setPositiveButton(getString(R.string.try_again)) {_, _ ->
+                        tryAgain()
+                    }
+                    create()
+                    show()
+                }
             }
-            if (questions.size == currentQuestion) {
+            else if (questions.size == currentQuestion) {
                 result.add(binding.etMessageBox.text.toString())
                 val answers = RequestPredictBody(
                     result[0],
@@ -165,6 +169,12 @@ class MajorRecomendationActivity : AppCompatActivity() {
         super.onBackPressed()
         val intent = Intent(this, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+        this@MajorRecomendationActivity.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+    }
+
+    private fun tryAgain() {
+        val intent = Intent(this, MajorRecomendationActivity::class.java)
         startActivity(intent)
         this@MajorRecomendationActivity.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }

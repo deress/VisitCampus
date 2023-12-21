@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VisitCampus</string>
+    <string name="email_validation">Email Tidak Valid</string>
+    <string name="password_validation">Kata sandi tidak boleh kurang dari 8 karakter!</string>
+    <string name="subtitle_register_page">Lengkapi data Anda di bawah ini!</string>
+    <string name="name">Nama</string>
+    <string name="title_register_page">Regitrasi</string>
+    <string name="title_login_page">Login</string>
+    <string name="message_login_page">Ayo cari kampus kamu!</string>
+    <string name="input_empty">Tida boleh kosong!</string>
+    <string name="thumbnail_text">Pilih Kampus Kamu!</string>
+    <string name="view_all">Lihat</string>
+    <string name="university">Universitas</string>
+    <string name="find_scope_button">Temukan Lingkup Ilmu Anda</string>
+    <string name="true_question">Benar: %d</string>
+    <string name="false_question">Salah: %d</string>
+    <string name="searchbar_hint">Cari...</string>
+    <string name="university_type_title">Jenis Peguruan Tinggi</string>
+    <string name="public_rb">Negeri</string>
+    <string name="private_rb">Swasta</string>
+    <string name="rb_all">Semua</string>
+    <string name="registration_path">Jalur Pendaftaran</string>
+    <string name="description_univ">Deskripsi</string>
+    <string name="faculty_major">Fakultas dan Jurusan</string>
+    <string name="college_achievement">Penghargaan Perguran Tinggi</string>
+    <string name="alumnus_profile">Profil Alumni</string>
+    <string name="menu_2">Pengaturan</string>
+    <string name="messageRegister">Tidak punya akun?</string>
+    <string name="profile">Profil Saya</string>
+    <string name="name_label">Nama</string>
+    <string name="settings_text">Pengaturan</string>
+    <string name="filter_univ_result">Universitas %1$s, Lingkup Ilmu %2$s, Jurusan %3$s, Akreditasi %4$s</string>
+    <string name="save_btn">Simpan</string>
+    <string name="accreditation_label">Akreditasi</string>
+    <string name="major_label">Jurusan</string>
+    <string name="scope_label">Lingkup Ilmu</string>
+    <string name="soshum_result">Dengan minat Anda yang kuat pada aspek sosial dan kemanusiaan, kemungkinan besar Anda akan menemukan tempat yang tepat di jurusan seperti Ilmu Politik, Akuntansi, Manajemen, Ekonomi, Ilmu Komunikasi, Hubungan Internasional, Hukum, Psikologi, dan Sastra. Kecenderungan kuat Anda terhadap kehidupan sosial membuat Anda cocok untuk mengeksplorasi dan mengembangkan diri di bidang ini. Nikmati penjelajahan dan raih kesuksesan di dunia akademis yang dinamis!</string>
+    <string name="saintek_result">Seorang yang penuh gairah dengan hobi menghitung dan antusias menyelesaikan masalah secara analitis, dunia Sains dan Teknologi sepertinya menghadirkan panggung ideal untuk Anda! Jurusan seperti Kedokteran, Kebidanan, Keperawatan, Kimia, Fisika, Matematika, Teknik Komputer, dan berbagai cabang Teknik (Mekanikal, Kimia, Industri, Listrik) adalah tempat dimana kemampuan Anda akan terpancar. Dengan keahlian dan minat Anda terhadap dunia teknologi, Anda akan betah sesungguhnya dan mampu memamerkan keahlian Anda dalam mengeksplorasi berbagai aspek ilmu pengetahuan dan inovasi. Semoga berhasil dalam perjalanan akademis Anda yang menantang!</string>
+    <string name="question">Perusahaan internet mana yang memulai kehidupannya sebagai toko buku online bernama \'Cadabra\'?</string>
+    <string name="submit">KIRIM</string>
+    <string name="title_major_recomendation">REKOMENDASI LINGKUP ILMU</string>
+    <string name="question_major">Jenis masakan yang paling Anda minati?</string>
+    <string name="question2_major">Ini akan membantu kami menyusun lebih banyak pengalaman resep untuk Anda.</string>
+    <string name="next">SELANJUTNYA</string>
+    <string name="title_result_major_recomendation">HASIL REKOMENDASI LINGKUP ILMU</string>
+    <string name="try_again">COBA LAGI</string>
+    <string name="finish">SELESAI</string>
+    <string name="title_exam_result">HASIL LATIHAN</string>
+    <string name="result_question">Pertanyaan</string>
+    <string name="result_answer">Jawaban</string>
+    <string name="explanation_title">Penjelasan:</string>
+    <string name="exam_practice_list">Daftar Latihan Soal</string>
+    <string name="confirm_delete_chatbot">Apakah Kamu yakin ingin menghapus semua obrolan?</string>
+    <string name="toast_predict_failed_major_recomendation">Prediksi gagal, silakan coba lagi dengan jawaban yang masuk akal!</string>
+    <string name="toast_exam_completed">Anda telah berhasil menyelesaikan Ujian</string>
+
+    <string-array name="category_major_recomendation">
+        <item>Introvert/Extrovert:</item>
+        <item>Sensing/Intuitive:</item>
+        <item>Thinking/Feeling:</item>
+        <item>Judging/Perceiving:</item>
+    </string-array>
+
+    <string-array name="major_recomendation_question">
+        <item>Saat Anda merasa lelah atau stres, bagaimana cara mengatasinya? meluangkan waktu sendirian atau mencari interaksi dengan orang lain untuk merasa lebih baik?</item>
+        <item>Ketika Anda harus mengambil keputusan besar, bagaimana Anda mengambil keputusan itu? mengandalkan logika dan analisis atau intuisi Anda?</item>
+        <item>Ketika Anda berada dalam konflik, bagaimana cara Anda mengatasinya? Mengutamakan perasaan atau logika, fakta dan data?</item>
+        <item>Ketika Anda memiliki jadwal yang padat, bagaimana Anda mengatasinya? Apakah Anda lebih suka menjalani hari Anda dengan lebih fleksibel atau membuat rencana terstruktur?</item>
+    </string-array>
+
+</resources>

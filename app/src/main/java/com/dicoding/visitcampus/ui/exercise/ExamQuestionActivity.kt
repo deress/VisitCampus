@@ -19,6 +19,7 @@ import com.dicoding.visitcampus.databinding.ActivityExamQuestionBinding
 import com.dicoding.visitcampus.ui.ViewModelFactory
 import com.dicoding.visitcampus.ui.main.MainActivity
 import com.dicoding.visitcampus.ui.major.MajorRecomendationViewModel
+import com.google.android.material.appbar.MaterialToolbar
 import kotlin.properties.Delegates
 
 class ExamQuestionActivity : AppCompatActivity(), View.OnClickListener {
@@ -38,6 +39,13 @@ class ExamQuestionActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         binding = ActivityExamQuestionBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val toolbar : MaterialToolbar = binding.topAppBar
+        setSupportActionBar(toolbar)
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowTitleEnabled(false)
+        }
 
         practiceId = intent.getIntExtra(PRACTICE_ID, 0)
         Log.i("ExamQuestionActivity", "response: $practiceId")

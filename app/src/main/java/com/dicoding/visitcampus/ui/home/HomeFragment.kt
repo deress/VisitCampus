@@ -1,13 +1,9 @@
 package com.dicoding.visitcampus.ui.home
 
-import com.dicoding.visitcampus.R
-
-
-import android.content.Intent
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,13 +12,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.dicoding.visitcampus.data.response.UnivItem
+import com.dicoding.visitcampus.R
+import com.dicoding.visitcampus.data.Result
+import com.dicoding.visitcampus.data.database.UnivEntity
 import com.dicoding.visitcampus.databinding.FragmentHomeBinding
-
-import com.dicoding.visitcampus.ui.major.MajorRecomendationActivity
-
 import com.dicoding.visitcampus.ui.ViewModelFactory
 import com.dicoding.visitcampus.ui.main.MainViewModel
+import com.dicoding.visitcampus.ui.major.MajorRecomendationActivity
 import com.dicoding.visitcampus.ui.major.MajorRecomendationViewModel
 import com.dicoding.visitcampus.ui.major.ResultMajorRecomendationActivity
 
@@ -88,15 +84,27 @@ class HomeFragment : Fragment() {
         binding.rvUniversities.layoutManager = layoutManager
 
 
-
-        viewModel.univ.observe(viewLifecycleOwner){
-            showListUniversity(it)
+        viewModel.getUniversities().observe(viewLifecycleOwner){ result ->
+            when (result) {
+                is Result.Loading -> {
+                    showLoading(true)
+                }
+                is Result.Success -> {
+                    showListUniversity(result.data)
+                    showLoading(false)
+                }
+                is Result.Error -> {
+                    showLoading(false)
+                }
+                else -> {}
+            }
         }
+
     }
 
-    private fun showListUniversity(items: List<UnivItem>?) {
+    private fun showListUniversity(items: List<UnivEntity>) {
         val adapter = GridUniversityAdapter()
-        adapter.submitList(items)
+        adapter.submitListRandomly(items)
         binding.rvUniversities.adapter = adapter
 
         val majorButton = ObjectAnimator.ofFloat(binding.btnRecomendation, View.ALPHA, 1f).setDuration(100)

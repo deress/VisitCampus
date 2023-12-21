@@ -7,16 +7,25 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.RawQuery
 import androidx.sqlite.db.SupportSQLiteQuery
-import com.dicoding.visitcampus.data.response.UnivItem
+import com.dicoding.visitcampus.data.response.MajorResponse
 
 @Dao
 interface UnivDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertUniv(univ: List<UnivItem>)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insertUniv(univ: List<UnivEntity>)
 
-    @RawQuery(observedEntities = [UnivItem::class])
-    fun getAllUniv(query: SupportSQLiteQuery): LiveData<List<UnivItem>>
+    @RawQuery(observedEntities = [UnivEntity::class])
+    fun getAllUniv(query: SupportSQLiteQuery): LiveData<List<UnivEntity>>
 
     @Query("DELETE FROM univ")
-    suspend fun deleteAll()
+    fun deleteAll()
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insertMajor(major: List<MajorResponse>)
+
+    @RawQuery(observedEntities = [MajorResponse::class])
+    fun getAllMajor(query: SupportSQLiteQuery): LiveData<List<MajorResponse>>
+
+    @Query("DELETE FROM major")
+    fun deleteAllMajor()
 }

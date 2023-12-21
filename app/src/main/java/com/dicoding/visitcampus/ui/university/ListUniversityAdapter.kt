@@ -1,31 +1,38 @@
 package com.dicoding.visitcampus.ui.university
 
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-
 import androidx.recyclerview.widget.RecyclerView
-import com.dicoding.visitcampus.data.response.UnivItem
+import com.dicoding.visitcampus.data.database.UnivEntity
 import com.dicoding.visitcampus.databinding.ItemUniversityBinding
 import com.dicoding.visitcampus.ui.university.detail.DetailUniversityActivity
 
-class ListUniversityAdapter: ListAdapter<UnivItem, ListUniversityAdapter.ListViewHolder>(DIFF_CALLBACK) {
+class ListUniversityAdapter: ListAdapter<UnivEntity, ListUniversityAdapter.ListViewHolder>(DIFF_CALLBACK) {
     class ListViewHolder(val binding: ItemUniversityBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(university: UnivItem){
+        fun bind(university: UnivEntity){
             val context = itemView.context
-            val imgResId = context.resources.getIdentifier(university.logoPhoto, "drawable", context.packageName)
+            val imgResId = context.resources.getIdentifier(university.univLogo, "drawable", context.packageName)
 
             binding.imgItemPhoto.setImageResource(imgResId)
             binding.tvItemName.text = university.univName
 
             itemView.setOnClickListener {
                 val intentDetail = Intent(itemView.context, DetailUniversityActivity::class.java)
-                intentDetail.putExtra(DetailUniversityActivity.EXTRA_UNIV_ID, university.id)
+                intentDetail.putExtra(DetailUniversityActivity.EXTRA_UNIV_ID, university.universityId)
                 itemView.context.startActivity(intentDetail)
             }
+        }
+    }
+
+    fun submitListAlphabetically(list: List<UnivEntity>?) {
+        list?.let {
+            val sortedList = list.sortedBy { it.univName }
+            submitList(sortedList)
         }
     }
 
@@ -41,11 +48,13 @@ class ListUniversityAdapter: ListAdapter<UnivItem, ListUniversityAdapter.ListVie
     }
 
     companion object  {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<UnivItem>() {
-            override fun areItemsTheSame(oldItem: UnivItem, newItem: UnivItem): Boolean {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<UnivEntity>() {
+            override fun areItemsTheSame(oldItem: UnivEntity, newItem: UnivEntity): Boolean {
                 return oldItem == newItem
             }
-            override fun areContentsTheSame(oldItem: UnivItem, newItem: UnivItem): Boolean {
+
+            @SuppressLint("DiffUtilEquals")
+            override fun areContentsTheSame(oldItem: UnivEntity, newItem: UnivEntity): Boolean {
                 return oldItem == newItem
             }
         }

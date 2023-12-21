@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 
 object ApiConfig {
     fun getExamService(): ExamService {
-        val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+        val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
         val authInterceptor = Interceptor { chain ->
             val req = chain.request()
             val requestHeaders = req.newBuilder()
@@ -30,7 +30,7 @@ object ApiConfig {
     }
 
     fun getModelService(): ModelService {
-        val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+        val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
         val authInterceptor = Interceptor { chain ->
             val req = chain.request()
             val requestHeaders = req.newBuilder()
@@ -54,13 +54,12 @@ object ApiConfig {
 
     fun getApiService(): ApiService {
         val loggingInterceptor =
-            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
         val client = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .build()
-
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://visitcampus.free.beeceptor.com/")
+            .baseUrl("https://visitcampus-6htnchfpxq-as.a.run.app")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
@@ -71,7 +70,7 @@ object ApiConfig {
     fun signService(): LoginService{
 
         val loggingInterceptor =
-            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
         val client = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .build()
@@ -85,17 +84,6 @@ object ApiConfig {
 
 }
 
-//    val authInterceptor = Interceptor { chain ->
-//        val req = chain.request()
-//        val requestHeaders = req.newBuilder()
-//            .addHeader("Authorization", "Bearer $token")
-//            .build()
-//        chain.proceed(requestHeaders)
-//    }
 
-//    val loggingInterceptor = if(BuildConfig.DEBUG) {
-//        HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-//    } else {
-//        HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
-//    }
+
 
