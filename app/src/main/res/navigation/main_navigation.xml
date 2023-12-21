@@ -29,7 +29,4 @@
         android:label="University"
         tools:layout="@layout/fragment_universities" />
 
-
-
-
 </navigation>

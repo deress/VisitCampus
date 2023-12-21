@@ -30,7 +30,10 @@ class GridUniversityAdapter: ListAdapter<UnivEntity, GridUniversityAdapter.ListV
 
     fun submitListRandomly(list: List<UnivEntity>?) {
         list?.let {
-            val shuffledList = list.toMutableList().apply { shuffle() }
+            val shuffledList = list.toMutableList().apply {
+                take(2)
+                shuffle()
+            }
             submitList(shuffledList)
         }
     }
@@ -46,9 +49,9 @@ class GridUniversityAdapter: ListAdapter<UnivEntity, GridUniversityAdapter.ListV
 
     }
 
-//    override fun getItemCount(): Int {
-//        return 2
-//    }
+    override fun getItemCount(): Int {
+        return 2
+    }
 
     companion object  {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<UnivEntity>() {

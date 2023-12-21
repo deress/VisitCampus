@@ -54,4 +54,18 @@
     <string name="confirm_delete_chatbot">Apakah Kamu yakin ingin menghapus semua obrolan?</string>
     <string name="toast_exam_completed">Anda telah berhasil menyelesaikan Ujian</string>
 
+    <string-array name="category_major_recomendation">
+        <item>Introvert/Extrovert:</item>
+        <item>Sensing/Intuitive:</item>
+        <item>Thinking/Feeling:</item>
+        <item>Judging/Perceiving:</item>
+    </string-array>
+
+    <string-array name="major_recomendation_question">
+        <item>Saat Anda merasa lelah atau stres, bagaimana cara mengatasinya? meluangkan waktu sendirian atau mencari interaksi dengan orang lain untuk merasa lebih baik?</item>
+        <item>Ketika Anda harus mengambil keputusan besar, bagaimana Anda mengambil keputusan itu? mengandalkan logika dan analisis atau intuisi Anda?</item>
+        <item>Ketika Anda berada dalam konflik, bagaimana cara Anda mengatasinya? Mengutamakan perasaan atau logika, fakta dan data?</item>
+        <item>Ketika Anda memiliki jadwal yang padat, bagaimana Anda mengatasinya? Apakah Anda lebih suka menjalani hari Anda dengan lebih fleksibel atau membuat rencana terstruktur?</item>
+    </string-array>
+
 </resources>

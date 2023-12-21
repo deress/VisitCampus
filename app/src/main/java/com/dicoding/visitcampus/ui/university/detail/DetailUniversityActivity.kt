@@ -37,7 +37,6 @@ class DetailUniversityActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val univId = intent.getIntExtra(EXTRA_UNIV_ID, 0)
-//        val univResult = viewModel.getUnivById(univName)
 
         val toolbar : MaterialToolbar = binding.topAppBar
         setSupportActionBar(toolbar)
@@ -45,7 +44,6 @@ class DetailUniversityActivity : AppCompatActivity() {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowTitleEnabled(false)
         }
-
 
         val facultyMajorLayout = LinearLayoutManager(this)
         binding.rvFacultyMajor.layoutManager = facultyMajorLayout

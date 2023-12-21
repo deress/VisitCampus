@@ -21,6 +21,7 @@ import com.dicoding.visitcampus.ui.main.MainViewModel
 import com.dicoding.visitcampus.ui.major.MajorRecomendationActivity
 import com.dicoding.visitcampus.ui.major.MajorRecomendationViewModel
 import com.dicoding.visitcampus.ui.major.ResultMajorRecomendationActivity
+import com.dicoding.visitcampus.ui.university.UniversityFragment
 
 
 class HomeFragment : Fragment() {
@@ -82,6 +83,7 @@ class HomeFragment : Fragment() {
 
         val layoutManager = GridLayoutManager(requireActivity(), 2, RecyclerView.VERTICAL, false)
         binding.rvUniversities.layoutManager = layoutManager
+
 
         viewModel.getUniversities().observe(viewLifecycleOwner){ result ->
             when (result) {
