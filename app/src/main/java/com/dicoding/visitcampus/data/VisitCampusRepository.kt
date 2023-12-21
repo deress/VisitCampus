@@ -302,14 +302,11 @@ class VisitCampusRepository(
 
     fun getUniv(id: Int) = liveData {
         emit(Result.Loading)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && SdkExtensions.getExtensionVersion(
-                Build.VERSION_CODES.TIRAMISU) >= 7) {
-            try {
-                val successResponse = apiService.getDetailUniv(id)
-                emit(Result.Success(successResponse))
-            } catch (e: HttpException) {
-                emit(Result.Error("error"))
-            }
+        try {
+            val successResponse = apiService.getDetailUniv(id)
+            emit(Result.Success(successResponse))
+        } catch (e: HttpException) {
+            emit(Result.Error("error"))
         }
     }
 
