@@ -37,6 +37,7 @@ class DetailUniversityActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val univId = intent.getIntExtra(EXTRA_UNIV_ID, 0)
+        Log.i("DetailUniversityId", "univId: $univId")
 
         val toolbar : MaterialToolbar = binding.topAppBar
         setSupportActionBar(toolbar)
@@ -67,6 +68,7 @@ class DetailUniversityActivity : AppCompatActivity() {
                     showLoading(true)
                 }
                 is Result.Success -> {
+                    Log.i("DetailUniversityViewModel", "resultData: ${result.data}")
                     setDetailData(result.data)
                     setAchievementData(result.data.achievementUniversity)
                     setAlumnusData(result.data.profileAlumnus)
