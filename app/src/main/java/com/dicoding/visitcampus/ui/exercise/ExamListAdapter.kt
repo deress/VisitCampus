@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.dicoding.visitcampus.data.model.exam.Exam
 import com.dicoding.visitcampus.data.response.ExamsResponse
 import com.dicoding.visitcampus.databinding.ExamItemLayoutBinding
 

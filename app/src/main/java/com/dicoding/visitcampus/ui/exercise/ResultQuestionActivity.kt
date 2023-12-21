@@ -9,10 +9,6 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.visitcampus.R
 import com.dicoding.visitcampus.data.Result
-import com.dicoding.visitcampus.data.model.exam.Exam
-import com.dicoding.visitcampus.data.model.exam.ExamData
-import com.dicoding.visitcampus.data.model.exam.Explanation
-import com.dicoding.visitcampus.data.model.exam.ExplanationData
 import com.dicoding.visitcampus.data.response.ResultExamResponse
 import com.dicoding.visitcampus.databinding.ActivityResultQuestionBinding
 import com.dicoding.visitcampus.ui.ViewModelFactory

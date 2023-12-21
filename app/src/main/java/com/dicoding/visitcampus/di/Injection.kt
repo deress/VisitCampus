@@ -17,8 +17,9 @@ object Injection {
         val apiService = ApiConfig.getApiService()
         val loginService = ApiConfig.signService()
         val examService = ApiConfig.getExamService()
+        val modelService = ApiConfig.getModelService()
         val database = UnivDatabase.getDatabase(context)
 
-        return VisitCampusRepository.getInstance(pref, apiService, loginService, examService, database)
+        return VisitCampusRepository.getInstance(pref, apiService, loginService, examService, modelService, database)
     }
 }

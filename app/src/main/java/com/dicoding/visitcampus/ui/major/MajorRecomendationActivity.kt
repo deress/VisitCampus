@@ -11,7 +11,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.widget.doAfterTextChanged
-import androidx.fragment.app.viewModels
 import com.dicoding.visitcampus.R
 import com.dicoding.visitcampus.data.Result
 import com.dicoding.visitcampus.data.request.RequestPredictBody
@@ -25,16 +24,16 @@ class MajorRecomendationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMajorRecomendationBinding
     private val categories: Array<String> =
         arrayOf(
-            "Introvert/Extrovert:",
-            "Sensing/Intuitive:",
-            "Thinking/Feeling:",
-            "Judging/Perceiving:")
+            getString(R.string.introvert_extrovert),
+            getString(R.string.sensing_intuitive),
+            getString(R.string.thinking_feeling),
+            getString(R.string.judging_perceiving))
     private val questions: Array<String> =
         arrayOf(
-            "Ketika anda merasa lelah atau stres, bagaimana anda mengatasinya? mengambil waktu sendiri atau mencari interaksi dengan orang lain untuk merasa lebih baik?",
-            "Ketika anda harus mengambil keputusan besar, bagaimana cara anda mengambil keputusan tersebut? mengandalkan logika dan analisis atau intuisi anda?",
-            "Ketika anda berada dalam suatu konflik, bagaimana cara anda menyelesaikannya? mengutamakan perasaan atau logika, fakta dan data?",
-            "Ketika memiliki jadwal yang ketat, bagaimana anda menangani hal tersebut? Lebih suka menjalani hari dengan lebih fleksibel atau membuat rencana yang terstruktur?")
+            getString(R.string.major_recomendation_question_one),
+            getString(R.string.major_recomendation_question_two),
+            getString(R.string.major_recomendation_question_three),
+            getString(R.string.major_recomendation_question_four))
     private var currentQuestion = 0
     private val result: ArrayList<String> = arrayListOf()
     private val majorRecomendationViewModel: MajorRecomendationViewModel by viewModels {

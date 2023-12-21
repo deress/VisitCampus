@@ -13,11 +13,6 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ExamService {
-    @POST("predict")
-    suspend fun predict(
-        @Body requestPredictBody: RequestPredictBody
-    ): PredictResponse
-
     @GET("exams")
     suspend fun exams(): List<ExamsResponse>
 
@@ -26,13 +21,8 @@ interface ExamService {
         @Path("practiceId") practiceId: Int
     ): List<Question>
 
-    @GET("exams/{practiceId}/result")
+    @GET("exams/{practiceId}/results")
     suspend fun getResultExam(
         @Path("practiceId") practiceId: Int
     ): List<ResultExamResponse>
-
-    @POST("chatbot")
-    suspend fun chatbot(
-        @Body requestChatbotBody: RequestChatbotBody
-    ): ChatbotResponse
 }

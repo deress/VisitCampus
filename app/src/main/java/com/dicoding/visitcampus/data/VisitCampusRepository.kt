@@ -19,6 +19,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.dicoding.visitcampus.data.api.ExamService
 import com.dicoding.visitcampus.data.api.LoginService
+import com.dicoding.visitcampus.data.api.ModelService
 import com.dicoding.visitcampus.data.database.UnivDatabase
 import com.dicoding.visitcampus.data.model.chatbot.Chatbot
 import com.dicoding.visitcampus.data.model.major.MajorRecomendation
@@ -37,8 +38,8 @@ class VisitCampusRepository(
     private val apiService: ApiService,
     private val loginService: LoginService,
     private val examService: ExamService,
-    private val univDatabase: UnivDatabase,
-
+    private val modelService: ModelService,
+    private val univDatabase: UnivDatabase
 ) {
     init {
         getUniversities()
@@ -48,7 +49,7 @@ class VisitCampusRepository(
         return flow {
             emit(Result.Loading)
             try {
-                val result = examService.predict(requestPredictBody)
+                val result = modelService.predict(requestPredictBody)
                 val resultPredict = MajorRecomendation(userId = userId, saintek = result.saintek, soshum = result.soshum)
                 univDatabase.majorRecomendationDao().insertMajorRecomendation(resultPredict)
                 emit(Result.Success(result))
@@ -109,7 +110,7 @@ class VisitCampusRepository(
     fun chatbot(userId: String, requestChatbotBody: RequestChatbotBody): LiveData<Result<ChatbotResponse>> = liveData {
         emit(Result.Loading)
         try {
-            val response = examService.chatbot(requestChatbotBody)
+            val response = modelService.chatbot(requestChatbotBody)
             Log.i("VisitCampusRepository", "response: $response")
             univDatabase.chatbotDao().insertChatbot(Chatbot(userId = userId, chat = requestChatbotBody.question, isUser = true))
             univDatabase.chatbotDao().insertChatbot(Chatbot(userId = userId, chat = response.answer, isUser = false))
@@ -122,6 +123,10 @@ class VisitCampusRepository(
 
     fun getChatbot(userId: String): LiveData<List<Chatbot>> {
         return univDatabase.chatbotDao().getChatbot(userId)
+    }
+
+    suspend fun deleteChatbot(chatbot: Chatbot) {
+        univDatabase.chatbotDao().deleteChatbot(chatbot)
     }
 
     fun postRegister(name: String, email: String, password: String) = liveData {
@@ -198,9 +203,10 @@ class VisitCampusRepository(
             apiService: ApiService,
             loginService: LoginService,
             examService: ExamService,
-            univDatabase: UnivDatabase,
+            modelService: ModelService,
+            univDatabase: UnivDatabase
 
-        ): VisitCampusRepository = VisitCampusRepository(userPreference, apiService, loginService, examService, univDatabase)
+        ): VisitCampusRepository = VisitCampusRepository(userPreference, apiService, loginService, examService, modelService, univDatabase)
 
     }
 }

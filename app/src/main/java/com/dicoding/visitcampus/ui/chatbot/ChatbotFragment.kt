@@ -7,9 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.dicoding.visitcampus.R
 import com.dicoding.visitcampus.data.model.chatbot.Chatbot
 import com.dicoding.visitcampus.data.request.RequestChatbotBody
 import com.dicoding.visitcampus.databinding.FragmentChatbotBinding
@@ -48,6 +50,9 @@ class ChatbotFragment : Fragment() {
             userId = user.userId
             chatbotViewModel.getChatbot(userId).observe(viewLifecycleOwner){ chatbot ->
                 updateChatList(chatbot)
+                binding.btnClearChat.setOnClickListener {
+                    showDeleteConfirmationDialog(chatbot)
+                }
             }
         }
 
@@ -67,5 +72,22 @@ class ChatbotFragment : Fragment() {
 
     private fun updateChatList(newChatList: List<Chatbot>) {
         chatbotAdapter.submitList(newChatList)
+    }
+
+    private fun showDeleteConfirmationDialog(chatbot: List<Chatbot>) {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Confirmation")
+            .setMessage(getString(R.string.confirm_delete_chatbot))
+            .setPositiveButton("Delete") { _, _ ->
+                // User clicked the positive button (Delete)
+                for (chat in chatbot) {
+                    chatbotViewModel.deleteChatbot(chat)
+                }
+            }
+            .setNegativeButton("Cancel") { dialog, _ ->
+                // User clicked the negative button (Cancel)
+                dialog.dismiss()
+            }
+            .show()
     }
 }

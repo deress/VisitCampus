@@ -12,7 +12,6 @@ import com.dicoding.visitcampus.R
 import com.dicoding.visitcampus.data.model.major.MajorRecomendation
 import com.dicoding.visitcampus.databinding.ActivityResultMajorRecomendationBinding
 import com.dicoding.visitcampus.ui.main.MainActivity
-import com.dicoding.visitcampus.data.response.PredictResponse
 import com.dicoding.visitcampus.ui.ViewModelFactory
 import com.dicoding.visitcampus.ui.main.MainViewModel
 
