@@ -34,9 +34,8 @@ object ApiConfig {
         val client = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .build()
-
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://visitcampus.free.beeceptor.com/")
+            .baseUrl("https://visitcampus-6htnchfpxq-as.a.run.app")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

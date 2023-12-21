@@ -142,7 +142,7 @@
         android:id="@+id/tv_messageRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Doesn't have account?"
+        android:text="@string/messageRegister"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.39"
         app:layout_constraintStart_toStartOf="parent"
@@ -152,7 +152,7 @@
         android:id="@+id/tv_buttonRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" Register"
+        android:text="@string/registerPage"
         android:textColor="@color/md_theme_light_primary"
         app:layout_constraintStart_toEndOf="@id/tv_messageRegister"
 

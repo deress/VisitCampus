@@ -16,8 +16,8 @@ class RegistrationPathAdapter: ListAdapter<RegistrationPathItem, RegistrationPat
     class ListViewHolder(val binding: ItemRegistrationPathBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(path: RegistrationPathItem){
             binding.apply {
-                tvPathName.text = path.pathName
-                tvPathDescription.text = path.pathDescription
+                tvPathName.text = path.pathMandiri
+                tvPathDescription.text = path.detail
             }
         }
     }

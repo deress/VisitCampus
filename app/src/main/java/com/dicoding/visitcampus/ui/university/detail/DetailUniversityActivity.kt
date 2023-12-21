@@ -1,7 +1,5 @@
 package com.dicoding.visitcampus.ui.university.detail
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -13,9 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.visitcampus.data.Result
 import com.dicoding.visitcampus.data.response.AlumnusProfileItem
 import com.dicoding.visitcampus.data.response.CollegeAchievementItem
-import com.dicoding.visitcampus.data.response.DetailUnivResponse
 import com.dicoding.visitcampus.data.response.FacultyItem
 import com.dicoding.visitcampus.data.response.RegistrationPathItem
+import com.dicoding.visitcampus.data.response.UniversitiesResponseItem
 import com.dicoding.visitcampus.databinding.ActivityDetailUniversityBinding
 import com.dicoding.visitcampus.ui.ViewModelFactory
 import com.dicoding.visitcampus.ui.university.detail.adapter.AlumnusProfileAdapter
@@ -49,16 +47,18 @@ class DetailUniversityActivity : AppCompatActivity() {
         }
 
 
-        val layoutManager1 = LinearLayoutManager(this)
-        binding.rvFacultyMajor.layoutManager = layoutManager1
+        val facultyMajorLayout = LinearLayoutManager(this)
+        binding.rvFacultyMajor.layoutManager = facultyMajorLayout
 
-        val layoutManager2 = LinearLayoutManager(this)
-        binding.rvCollegeAchievement.layoutManager = layoutManager2
+        val achievementLayout = LinearLayoutManager(this)
+        binding.rvCollegeAchievement.layoutManager = achievementLayout
+        val achievementDecoration = DividerItemDecoration(this, achievementLayout.orientation)
+        binding.rvCollegeAchievement.addItemDecoration(achievementDecoration)
 
-        val layoutManager3 = LinearLayoutManager(this)
-        binding.rvAlumnusProfile.layoutManager = layoutManager3
-        val itemDecoration = DividerItemDecoration(this, layoutManager3.orientation)
-        binding.rvAlumnusProfile.addItemDecoration(itemDecoration)
+        val alumnusLayout = LinearLayoutManager(this)
+        binding.rvAlumnusProfile.layoutManager = alumnusLayout
+        val alumnusDecoration = DividerItemDecoration(this, alumnusLayout.orientation)
+        binding.rvAlumnusProfile.addItemDecoration(alumnusDecoration)
 
         val layoutManager4 = LinearLayoutManager(this)
         binding.rvRegistrationPath.layoutManager = layoutManager4
@@ -70,10 +70,10 @@ class DetailUniversityActivity : AppCompatActivity() {
                 }
                 is Result.Success -> {
                     setDetailData(result.data)
-                    setAchievementData(result.data.collegeAchievement)
-                    setAlumnusData(result.data.alumnusProfile)
+                    setAchievementData(result.data.achievementUniversity)
+                    setAlumnusData(result.data.profileAlumnus)
                     setPathData(result.data.registrationPath)
-                    setFacultyMajorData(result.data.faculty)
+                    setFacultyMajorData(result.data.faculties)
                     showLoading(false)
                 }
                 is Result.Error -> {
@@ -86,16 +86,16 @@ class DetailUniversityActivity : AppCompatActivity() {
         }
     }
 
-    private fun setDetailData(item: DetailUnivResponse) {
+    private fun setDetailData(item: UniversitiesResponseItem) {
         binding.apply {
-            val logoResId = resources.getIdentifier(item.logoPhoto, "drawable", packageName)
-            val coverResId = resources.getIdentifier(item.coverPhoto, "drawable", packageName)
+            val logoResId = resources.getIdentifier(item.univLogo, "drawable", packageName)
+            val coverResId = resources.getIdentifier(item.univCover, "drawable", packageName)
 
 
             ivCoverUniv.setImageResource(coverResId)
             ivLogoUniv.setImageResource(logoResId)
             tvNameUniv.text = item.univName
-            tvContentDescription.text = item.univDescription
+            tvContentDescription.text = item.personalityUniv
 
             btnStreetView.setOnClickListener{
                moveStreetView(item.latitude, item.longitude)

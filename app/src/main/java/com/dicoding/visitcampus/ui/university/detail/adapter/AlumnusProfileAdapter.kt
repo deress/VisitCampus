@@ -15,15 +15,9 @@ class AlumnusProfileAdapter: ListAdapter<AlumnusProfileItem, AlumnusProfileAdapt
     class ListViewHolder(val binding: ItemAlumnusProfileBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(alumnus: AlumnusProfileItem){
             binding.apply {
-                val context = itemView.context
-                val logoResId = context.resources.getIdentifier(alumnus.alumnusPhoto, "drawable", context.packageName)
-
-                Glide.with(itemView.context)
-                    .load(logoResId)
-                    .into(ivAlumnusPhoto)
                 tvAlumnusName.text = alumnus.alumnusName
-                tvAlumnusCohort.text = alumnus.alumnusCohort
-                tvAlumnusCareer.text = alumnus.alumnusCareer
+                tvAlumnusCohort.text = alumnus.cohort
+                tvAlumnusCareer.text = alumnus.career
             }
         }
     }

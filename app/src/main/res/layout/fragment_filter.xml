@@ -76,7 +76,7 @@
         android:layout_marginHorizontal="16dp"
         android:textStyle="bold"
         android:textSize="18sp"
-        android:text="Scope of Science" />
+        android:text="@string/scope_label" />
 
     <RadioGroup
         android:id="@+id/rg_scopeScience"
@@ -116,7 +116,7 @@
         android:layout_marginHorizontal="16dp"
         android:textStyle="bold"
         android:textSize="18sp"
-        android:text="Accreditation" />
+        android:text="@string/accreditation_label" />
 
     <RadioGroup
         android:id="@+id/rg_accreditation"
@@ -132,9 +132,10 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:padding="8dp"
+            android:textAlignment="center"
             android:background="@drawable/custom_button_background"
             android:button="@android:color/transparent"
-            android:text="RadioButton1" />
+            android:text="@string/acreditasi_a" />
 
         <RadioButton
             android:id="@+id/rb_good"
@@ -142,9 +143,21 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:padding="8dp"
+            android:textAlignment="center"
             android:background="@drawable/custom_button_background"
             android:button="@android:color/transparent"
-            android:text="RadioButton2" />
+            android:text="@string/acreditasi_b" />
+
+        <RadioButton
+            android:id="@+id/rb_bad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:padding="8dp"
+            android:textAlignment="center"
+            android:background="@drawable/custom_button_background"
+            android:button="@android:color/transparent"
+            android:text="@string/acreditasi_c" />
     </RadioGroup>
 
     <TextView
@@ -155,7 +168,7 @@
         android:layout_marginHorizontal="16dp"
         android:textStyle="bold"
         android:textSize="18sp"
-        android:text="Major" />
+        android:text="@string/major_label" />
 
     <Spinner
         android:id="@+id/spinner"
@@ -174,7 +187,7 @@
         android:layout_marginVertical="16dp"
         android:layout_marginHorizontal="16dp"
         android:layout_gravity="end"
-        android:text="Save"/>
+        android:text="@string/save_btn"/>
 
 
 

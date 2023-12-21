@@ -4,10 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.dicoding.visitcampus.data.response.UnivItem
+import com.dicoding.visitcampus.data.response.MajorResponse
+
 
 @Database(
-    entities = [UnivItem::class],
+    entities = [UnivEntity::class, MajorResponse::class],
     version = 1
 )
 

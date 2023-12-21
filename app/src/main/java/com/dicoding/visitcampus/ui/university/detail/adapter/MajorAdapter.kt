@@ -13,7 +13,7 @@ class MajorAdapter: ListAdapter<MajorItem, MajorAdapter.ListViewHolder>(DIFF_CAL
         fun bind(major: MajorItem){
             binding.apply {
                 tvMajorName.text = major.majorName
-                tvMajorAccreditation.text = major.majorAccreditation
+                tvMajorAccreditation.text = major.accreditationMajor
             }
         }
     }
