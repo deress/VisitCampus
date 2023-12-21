@@ -52,6 +52,7 @@
     <string name="explanation_title">Penjelasan:</string>
     <string name="exam_practice_list">Daftar Latihan Soal</string>
     <string name="confirm_delete_chatbot">Apakah Kamu yakin ingin menghapus semua obrolan?</string>
+    <string name="toast_predict_failed_major_recomendation">Prediksi gagal, silakan coba lagi dengan jawaban yang masuk akal!</string>
     <string name="toast_exam_completed">Anda telah berhasil menyelesaikan Ujian</string>
 
     <string-array name="category_major_recomendation">

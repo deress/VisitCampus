@@ -28,16 +28,20 @@
 
         <activity
             android:name=".ui.major.ResultMajorRecomendationActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".ui.main.MainActivity"/>
         <activity
             android:name=".ui.major.MajorRecomendationActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".ui.main.MainActivity"/>
         <activity
             android:name=".ui.exercise.ResultQuestionActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".ui.main.MainActivity"/>
         <activity
             android:name=".ui.exercise.ExamQuestionActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".ui.main.MainActivity"/>
         <activity
             android:name=".ui.main.SplashScreenActivity"
             android:exported="true">

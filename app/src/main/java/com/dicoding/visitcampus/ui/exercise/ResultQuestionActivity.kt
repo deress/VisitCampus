@@ -13,6 +13,7 @@ import com.dicoding.visitcampus.data.response.ResultExamResponse
 import com.dicoding.visitcampus.databinding.ActivityResultQuestionBinding
 import com.dicoding.visitcampus.ui.ViewModelFactory
 import com.dicoding.visitcampus.ui.main.MainActivity
+import com.google.android.material.appbar.MaterialToolbar
 
 class ResultQuestionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityResultQuestionBinding
@@ -25,6 +26,13 @@ class ResultQuestionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityResultQuestionBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val toolbar : MaterialToolbar = binding.topAppBar
+        setSupportActionBar(toolbar)
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowTitleEnabled(false)
+        }
 
         val layoutManager = LinearLayoutManager(this)
         binding.rvExplanation.layoutManager = layoutManager

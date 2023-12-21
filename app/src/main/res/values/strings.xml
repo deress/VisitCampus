@@ -90,6 +90,7 @@
     <string name="sent_message" translatable="false">This is sent message</string>
     <string name="confirm_delete_chatbot">Are you sure you want to delete all chat?</string>
     <string name="toast_exam_completed">You have successfully completed the Exam</string>
+    <string name="toast_predict_failed_major_recomendation">Prediction failed, please try again with a reasonable answer!</string>
     <string name="result_major_text" translatable="false">Proin magna urna, malesuada eu dignissim lacinia, dapibus at lacus. Mauris placerat libero in justo fringilla tempus. Vestibulum nec elementum lacus. Morbi id dui iaculis, iaculis risus vitae, aliquet neque. Etiam luctus egestas purus ac iaculis. Proin ac placerat libero. Proin lobortis eros a lacus interdum cursus. Quisque dapibus id felis venenatis iaculis. In congue aliquam finibus. Sed id auctor lectus. Suspendisse elementum rhoncus sem interdum malesuada.</string>
 
     <string-array name="category_major_recomendation">

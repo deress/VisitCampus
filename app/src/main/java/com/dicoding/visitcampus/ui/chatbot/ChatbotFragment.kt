@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.visitcampus.R
+import com.dicoding.visitcampus.data.Result
 import com.dicoding.visitcampus.data.model.chatbot.Chatbot
 import com.dicoding.visitcampus.data.request.RequestChatbotBody
 import com.dicoding.visitcampus.databinding.FragmentChatbotBinding
@@ -43,7 +44,9 @@ class ChatbotFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         recyclerView = binding.rvChat
         chatbotAdapter = ChatbotAdapter(requireContext())
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        val linearLayoutManager = LinearLayoutManager(requireContext())
+        recyclerView.layoutManager = linearLayoutManager
+        linearLayoutManager.setStackFromEnd(true);
         recyclerView.adapter = chatbotAdapter
 
         viewModel.getSession().observe(viewLifecycleOwner){user ->
@@ -53,6 +56,7 @@ class ChatbotFragment : Fragment() {
                 binding.btnClearChat.setOnClickListener {
                     showDeleteConfirmationDialog(chatbot)
                 }
+                recyclerView.scrollToPosition(chatbotAdapter.getItemCount() - 1)
             }
         }
 
@@ -63,7 +67,24 @@ class ChatbotFragment : Fragment() {
                 val chat = binding.etMessageBox.text.toString()
                 Log.i("ChatbotFragment", "userId: $userId, chat: $chat")
                 chatbotViewModel.chatbot(userId, RequestChatbotBody(chat)).observe(viewLifecycleOwner){
-
+                    when (it) {
+                        is Result.Loading -> {
+                            showLoading(true)
+                        }
+                        is Result.Success -> {
+                            showLoading(false)
+                            Log.i("ChatbotFragment", "Success Chatbot")
+                        }
+                        is Result.Error -> {
+                            showLoading(false)
+                            Toast.makeText(
+                                requireContext(),
+                                it.error,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        else -> {}
+                    }
                 }
                 binding.etMessageBox.setText("")
             }
@@ -89,5 +110,13 @@ class ChatbotFragment : Fragment() {
                 dialog.dismiss()
             }
             .show()
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if(isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.progressBar.visibility = View.GONE
+        }
     }
 }

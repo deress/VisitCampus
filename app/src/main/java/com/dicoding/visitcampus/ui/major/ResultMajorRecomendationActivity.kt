@@ -14,6 +14,7 @@ import com.dicoding.visitcampus.databinding.ActivityResultMajorRecomendationBind
 import com.dicoding.visitcampus.ui.main.MainActivity
 import com.dicoding.visitcampus.ui.ViewModelFactory
 import com.dicoding.visitcampus.ui.main.MainViewModel
+import com.google.android.material.appbar.MaterialToolbar
 
 class ResultMajorRecomendationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityResultMajorRecomendationBinding
@@ -30,7 +31,13 @@ class ResultMajorRecomendationActivity : AppCompatActivity() {
         binding = ActivityResultMajorRecomendationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        val resultRecomendation = intent.getParcelableExtra<PredictResponse>(RESULT_RECOMENDATION) as PredictResponse
+        val toolbar : MaterialToolbar = binding.topAppBar
+        setSupportActionBar(toolbar)
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowTitleEnabled(false)
+        }
+
         viewModel.getSession().observe(this) {user ->
             majorRecomendationViewModel.getMajorRecomendation(user.userId).observe(this) {
                 setData(it)
@@ -46,7 +53,6 @@ class ResultMajorRecomendationActivity : AppCompatActivity() {
 
         binding.btnTryAgain.setOnClickListener {
             val intent = Intent(this, MajorRecomendationActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
             this@ResultMajorRecomendationActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }

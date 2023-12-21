@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.core.widget.doAfterTextChanged
 import com.dicoding.visitcampus.R
 import com.dicoding.visitcampus.data.Result
@@ -38,17 +39,19 @@ class MajorRecomendationActivity : AppCompatActivity() {
         binding = ActivityMajorRecomendationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val toolbar : MaterialToolbar = binding.topAppBar
+        setSupportActionBar(toolbar)
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowTitleEnabled(false)
+        }
+
         val categories = resources.getStringArray(R.array.category_major_recomendation)
         val questions = resources.getStringArray(R.array.major_recomendation_question)
 
         Log.i("MajorRecomendationActivity", "categories: $categories")
         Log.i("MajorRecomendationActivity", "categories: $questions")
 
-        val toolbar : MaterialToolbar = binding.topAppBar
-        setSupportActionBar(toolbar)
-        supportActionBar?.apply {
-            setDisplayShowTitleEnabled(false)
-        }
         setRegisterEnable()
 
         binding.tvQuestion.text = categories[currentQuestion]
@@ -61,7 +64,18 @@ class MajorRecomendationActivity : AppCompatActivity() {
             binding.progressBar.progress = currentQuestion
             binding.tvProgress.text = "$currentQuestion" + "/" + "${questions!!.size}"
             Log.i("MajorRecomendationActivity", "$currentQuestion")
-            if (questions.size == currentQuestion) {
+            if (currentQuestion == 5) {
+                AlertDialog.Builder(this).apply {
+                    setTitle("Failed")
+                    setMessage(getString(R.string.toast_predict_failed_major_recomendation))
+                    setPositiveButton(getString(R.string.try_again)) {_, _ ->
+                        tryAgain()
+                    }
+                    create()
+                    show()
+                }
+            }
+            else if (questions.size == currentQuestion) {
                 result.add(binding.etMessageBox.text.toString())
                 val answers = RequestPredictBody(
                     result[0],
@@ -155,6 +169,12 @@ class MajorRecomendationActivity : AppCompatActivity() {
         super.onBackPressed()
         val intent = Intent(this, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+        this@MajorRecomendationActivity.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+    }
+
+    private fun tryAgain() {
+        val intent = Intent(this, MajorRecomendationActivity::class.java)
         startActivity(intent)
         this@MajorRecomendationActivity.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }

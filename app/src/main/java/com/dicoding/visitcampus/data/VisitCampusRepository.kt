@@ -130,6 +130,7 @@ class VisitCampusRepository(
             Log.i("VisitCampusRepository", "response: $response")
             univDatabase.chatbotDao().insertChatbot(Chatbot(userId = userId, chat = requestChatbotBody.question, isUser = true))
             univDatabase.chatbotDao().insertChatbot(Chatbot(userId = userId, chat = response.answer, isUser = false))
+            emit(Result.Success(response))
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
             val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
