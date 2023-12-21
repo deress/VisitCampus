@@ -2,6 +2,7 @@ package com.dicoding.visitcampus.ui.major
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -22,18 +23,7 @@ import com.google.android.material.appbar.MaterialToolbar
 
 class MajorRecomendationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMajorRecomendationBinding
-    private val categories: Array<String> =
-        arrayOf(
-            getString(R.string.introvert_extrovert),
-            getString(R.string.sensing_intuitive),
-            getString(R.string.thinking_feeling),
-            getString(R.string.judging_perceiving))
-    private val questions: Array<String> =
-        arrayOf(
-            getString(R.string.major_recomendation_question_one),
-            getString(R.string.major_recomendation_question_two),
-            getString(R.string.major_recomendation_question_three),
-            getString(R.string.major_recomendation_question_four))
+
     private var currentQuestion = 0
     private val result: ArrayList<String> = arrayListOf()
     private val majorRecomendationViewModel: MajorRecomendationViewModel by viewModels {
@@ -47,6 +37,12 @@ class MajorRecomendationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMajorRecomendationBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val categories = resources.getStringArray(R.array.category_major_recomendation)
+        val questions = resources.getStringArray(R.array.major_recomendation_question)
+
+        Log.i("MajorRecomendationActivity", "categories: $categories")
+        Log.i("MajorRecomendationActivity", "categories: $questions")
 
         val toolbar : MaterialToolbar = binding.topAppBar
         setSupportActionBar(toolbar)
