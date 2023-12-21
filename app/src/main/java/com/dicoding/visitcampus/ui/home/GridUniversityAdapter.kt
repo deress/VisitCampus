@@ -30,11 +30,9 @@ class GridUniversityAdapter: ListAdapter<UnivEntity, GridUniversityAdapter.ListV
 
     fun submitListRandomly(list: List<UnivEntity>?) {
         list?.let {
-            val shuffledList = list.toMutableList().apply {
-                take(2)
-                shuffle()
-            }
-            submitList(shuffledList)
+            val shuffledList = list.toMutableList().apply { shuffle() }
+            val sublist = shuffledList.take(2)
+            submitList(sublist)
         }
     }
 
@@ -47,10 +45,6 @@ class GridUniversityAdapter: ListAdapter<UnivEntity, GridUniversityAdapter.ListV
         val university = getItem(position)
         holder.bind(university)
 
-    }
-
-    override fun getItemCount(): Int {
-        return 2
     }
 
     companion object  {

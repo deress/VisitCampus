@@ -59,7 +59,7 @@
         <activity
             android:name=".ui.university.streetView.StreetViewActivity"
             android:exported="false"
-            android:parentActivityName=".ui.main.MainActivity" />
+            android:parentActivityName=".ui.university.detail.DetailUniversityActivity" />
         <activity
             android:name=".ui.university.detail.DetailUniversityActivity"
             android:exported="false"
