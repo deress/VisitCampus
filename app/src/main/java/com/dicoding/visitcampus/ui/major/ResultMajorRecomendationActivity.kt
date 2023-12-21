@@ -7,13 +7,22 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import com.dicoding.visitcampus.R
+import com.dicoding.visitcampus.data.model.major.MajorRecomendation
 import com.dicoding.visitcampus.databinding.ActivityResultMajorRecomendationBinding
 import com.dicoding.visitcampus.ui.main.MainActivity
-import com.dicoding.visitcampus.data.response.PredictResponse
+import com.dicoding.visitcampus.ui.ViewModelFactory
+import com.dicoding.visitcampus.ui.main.MainViewModel
 
 class ResultMajorRecomendationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityResultMajorRecomendationBinding
+    private val viewModel by viewModels<MainViewModel> {
+        ViewModelFactory.getInstance(this)
+    }
+    private val majorRecomendationViewModel by viewModels<MajorRecomendationViewModel> {
+        ViewModelFactory.getInstance(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -21,8 +30,12 @@ class ResultMajorRecomendationActivity : AppCompatActivity() {
         binding = ActivityResultMajorRecomendationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val resultRecomendation = intent.getParcelableExtra<PredictResponse>(RESULT_RECOMENDATION) as PredictResponse
-
+//        val resultRecomendation = intent.getParcelableExtra<PredictResponse>(RESULT_RECOMENDATION) as PredictResponse
+        viewModel.getSession().observe(this) {user ->
+            majorRecomendationViewModel.getMajorRecomendation(user.userId).observe(this) {
+                setData(it)
+            }
+        }
 
         binding.btnFinish.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -31,12 +44,18 @@ class ResultMajorRecomendationActivity : AppCompatActivity() {
             this@ResultMajorRecomendationActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
 
+        binding.btnTryAgain.setOnClickListener {
+            val intent = Intent(this, MajorRecomendationActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+            this@ResultMajorRecomendationActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+        }
+
         playAnimation()
-        setData(resultRecomendation)
     }
 
     @SuppressLint("StringFormatInvalid")
-    private fun setData(data: PredictResponse) {
+    private fun setData(data: MajorRecomendation) {
         val saintekPercent = data.saintek * 100
         val soshumPercent = data.soshum * 100
         val saintekText = getString(R.string.saintek_percent, saintekPercent.toInt())
@@ -44,6 +63,11 @@ class ResultMajorRecomendationActivity : AppCompatActivity() {
         binding.saintekPercent.text = saintekText + " %"
         binding.soshumPercent.text = soshumText + " %"
         binding.percentageBar.progress = saintekPercent.toInt()
+        if (saintekPercent > soshumPercent) {
+            binding.tvResult.text = getString(R.string.saintek_result)
+        } else {
+            binding.tvResult.text = getString(R.string.soshum_result)
+        }
     }
 
     private fun playAnimation() {
@@ -55,9 +79,11 @@ class ResultMajorRecomendationActivity : AppCompatActivity() {
         val saintekPercent = ObjectAnimator.ofFloat(binding.saintekPercent, View.ALPHA, 1f).setDuration(1000)
         val soshumPercent = ObjectAnimator.ofFloat(binding.soshumPercent, View.ALPHA, 1f).setDuration(1000)
         val btnFinish = ObjectAnimator.ofFloat(binding.btnFinish, View.ALPHA, 1f).setDuration(1000)
+        val btnTryAgain = ObjectAnimator.ofFloat(binding.btnTryAgain, View.ALPHA, 1f).setDuration(1000)
+
 
         AnimatorSet().apply {
-            playTogether(tvTitle,tvResult, btnFinish, percentageBar, tvSaintek, tvSoshum, saintekPercent, soshumPercent)
+            playTogether(tvTitle,tvResult, btnFinish, btnTryAgain, percentageBar, tvSaintek, tvSoshum, saintekPercent, soshumPercent)
             start()
         }
     }

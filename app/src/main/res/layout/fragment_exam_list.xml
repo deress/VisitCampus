@@ -10,7 +10,7 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DAFTAR LATIHAN SOAL"
+        android:text="@string/exam_practice_list"
         android:textStyle="bold"
         android:textSize="24sp"
         android:layout_margin="16dp"

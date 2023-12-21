@@ -1,18 +1,18 @@
 <resources>
     <string name="app_name">VisitCampus</string>
 
-    <string name="logo_visitcampus">logo_visitcampus</string>
+    <string name="logo_visitcampus" translatable="false">logo_visitcampus</string>
     <string name="email_validation">Invalid Email</string>
     <string name="password_validation">Password cannot be less than 8 characters!</string>
     <string name="subtitle_register_page">Complete your data below!</string>
     <string name="name">Name</string>
-    <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="register">REGISTER</string>
+    <string name="email" translatable="false">Email</string>
+    <string name="password" translatable="false">Password</string>
+    <string name="register" translatable="false">REGISTER</string>
     <string name="title_register_page">Registration</string>
     <string name="title_login_page">Login</string>
     <string name="message_login_page">Let\'s find your University</string>
-    <string name="login">LOGIN</string>
+    <string name="login" translatable="false">LOGIN</string>
     <string name="input_empty">Input cannot be empty!</string>
 
     <string name="thumbnail_text">Choose your University!</string>
@@ -20,47 +20,93 @@
     <string name="university">University</string>
     <string name="find_scope_button">Find Your Scope of Science</string>
 
-    <string name="saintek_percent">%d</string>
-    <string name="soshum_percent">%d</string>
+    <string name="saintek_percent" translatable="false">%d</string>
+    <string name="soshum_percent" translatable="false">%d</string>
     <string name="true_question">True: %d</string>
     <string name="false_question">False: %d</string>
 
     <string name="searchbar_hint">Search...</string>
-    <string name="btn_filter">Filter</string>
+    <string name="btn_filter" translatable="false">Filter</string>
     <string name="university_type_title">University Type</string>
     <string name="public_rb">Public</string>
     <string name="private_rb">Private</string>
     <string name="rb_all">All</string>
-    <string name="science_rb">Science</string>
-    <string name="law_rb">Law</string>
+    <string name="science_rb" translatable="false">Saintek</string>
+    <string name="law_rb" translatable="false">Soshum</string>
     <string name="registration_path">Registration Path</string>
-    <string name="snbp">Seleksi Nasional Berdasarkan Prestasi (SNBP)</string>
-    <string name="snbp_content">Seleksi Nasional Berdasarkan Prestasi (SNBP) adalah seleksi masuk perguruan tinggi negeri yang dilakukan berdasarkan hasil penelusuran prestasi akademik melalui rapor serta portofolio akademik dan non akademik siswa.</string>
-    <string name="snbt">Seleksi Nasional Berbasis Tes(SNBT)</string>
-    <string name="snbt_content">SNBT adalah singkatan dari Seleksi Nasional Berbasis Tes merupakan seleksi yang dilakukan berdasarkan hasil nilai Tes Skolastik yang berbasis komputer. Materi yang akan diujikan pada SNBT adalah Tes Potensi Skolastik (TPS) dan Tes Literasi yang terdiri dari tujuh subtes, antara lain: \nKemampuan Penalaran Umum \nKemampuan Kuantitatif \nPengetahuan dan Pemahaman Umum \nKemampuan Memahami Bacaan dan Menulis \nPenalaran Matematika \nLiterasi Bahasa Indonesia \nLiterasi Bahasa Inggris</string>
-    <string name="street_view">Street View</string>
+    <string name="snbp" translatable="false">Seleksi Nasional Berdasarkan Prestasi (SNBP)</string>
+    <string name="snbp_content" translatable="false">Seleksi Nasional Berdasarkan Prestasi (SNBP) adalah seleksi masuk perguruan tinggi negeri yang dilakukan berdasarkan hasil penelusuran prestasi akademik melalui rapor serta portofolio akademik dan non akademik siswa.</string>
+    <string name="snbt" translatable="false">Seleksi Nasional Berbasis Tes(SNBT)</string>
+    <string name="snbt_content" translatable="false">SNBT adalah singkatan dari Seleksi Nasional Berbasis Tes merupakan seleksi yang dilakukan berdasarkan hasil nilai Tes Skolastik yang berbasis komputer. Materi yang akan diujikan pada SNBT adalah Tes Potensi Skolastik (TPS) dan Tes Literasi yang terdiri dari tujuh subtes, antara lain: \nKemampuan Penalaran Umum \nKemampuan Kuantitatif \nPengetahuan dan Pemahaman Umum \nKemampuan Memahami Bacaan dan Menulis \nPenalaran Matematika \nLiterasi Bahasa Indonesia \nLiterasi Bahasa Inggris</string>
+    <string name="street_view" translatable="false">Street View</string>
     <string name="description_univ">Description</string>
     <string name="faculty_major">Faculty and Major</string>
     <string name="college_achievement">College Achievement</string>
     <string name="alumnus_profile">Alumnus Profile</string>
-    <string name="menu_1">Logout</string>
+    <string name="menu_1" translatable="false">Logout</string>
     <string name="menu_2">Settings</string>
-    <string name="menu_3">Menu</string>
+    <string name="menu_3" translatable="false">Menu</string>
+
+
     <string name="messageRegister">Doesn\'t have account?</string>
-    <string name="registerPage">Register</string>
-    <string name="logout_text">Logout</string>
-    <string name="profile">Profile</string>
+    <string name="registerPage" translatable="false">Register</string>
+    <string name="logout_text" translatable="false">Logout</string>
+    <string name="profile">My Profile</string>
     <string name="name_label">Name</string>
-    <string name="email_label">Email</string>
+    <string name="email_label" translatable="false">Email</string>
     <string name="settings_text">Settings</string>
-    <string name="filter_univ_result">Universitas %1$s, Lingkup Ilmu %2$s, Jurusan %3$s, Akreditasi Jurusan %4$s</string>
-    <string name="acreditasi_c">C</string>
-    <string name="acreditasi_b">B</string>
-    <string name="acreditasi_a">A</string>
+    <string name="filter_univ_result">%1$s College, %2$s Scope of Science, Major %3$s, Acrreditation %4$s</string>
+    <string name="acreditasi_c" translatable="false">C</string>
+    <string name="acreditasi_b" translatable="false">B</string>
+    <string name="acreditasi_a" translatable="false">A</string>
     <string name="save_btn">Save</string>
     <string name="accreditation_label">Accreditation</string>
     <string name="major_label">Major</string>
     <string name="scope_label">Scope of Science</string>
+
+    <string name="soshum_result">With your strong interest in social and human aspects, you will likely find the right place in majors such as Political Science, Accounting, Management, Economics, Communication Studies, International Relations, Law, Psychology, and Literature. Your strong inclination towards social life makes you well suited to exploring and developing yourself in these areas. Enjoy exploring and achieving success in the dynamic academic world!</string>
+    <string name="saintek_result">A passionate person with a hobby of calculating and enthusiastic about solving problems analytically, the world of Science and Technology seems to present the ideal stage for you! Majors such as Medicine, Midwifery, Nursing, Chemistry, Physics, Mathematics, Computer Engineering, and various branches of Engineering (Mechanical, Chemical, Industrial, Electrical) are where your abilities will shine. With your expertise and interest in the world of technology, you will feel truly "at home" and able to show off your skills in exploring various aspects of science and innovation. Good luck on your challenging academic journey!</string>
+    <string name="question">Which internet company began life as an online bookstore called \'Cadabra\'?</string>
+    <string name="answer" translatable="false">Apple</string>
+    <string name="submit">SUBMIT</string>
+    <string name="title_major_recomendation">MAJOR RECOMENDATION</string>
+    <string name="question_major">Types of cuisines you most interested in?</string>
+    <string name="question2_major">This will help us curate more recipe experiences for you.</string>
+    <string name="next">NEXT</string>
+    <string name="title_result_major_recomendation">RESULT SCOPE OF SCIENCE RECOMENDATION</string>
+
+    <string name="saintek" translatable="false">Saintek</string>
+    <string name="soshum" translatable="false">Soshum</string>
+    <string name="try_again">TRY AGAIN</string>
+    <string name="finish">FINISH</string>
+    <string name="title_exam_result">EXAM RESULT</string>
+    <string name="exam_name" translatable="false">SM ITB</string>
+    <string name="result_question">Question</string>
+    <string name="result_answer">Answer</string>
+    <string name="explanation_title">Explanation:</string>
+    <string name="explanation_description" translatable="false">Explanation Description</string>
+    <string name="exam_practice_list">Exam Practice List</string>
+    <string name="receive_message" translatable="false">This is receive message</string>
+    <string name="sent_message" translatable="false">This is sent message</string>
+    <string name="confirm_delete_chatbot">Are you sure you want to delete all chat?</string>
+    <string name="toast_exam_completed">You have successfully completed the Exam</string>
+    <string name="result_major_text" translatable="false">Proin magna urna, malesuada eu dignissim lacinia, dapibus at lacus. Mauris placerat libero in justo fringilla tempus. Vestibulum nec elementum lacus. Morbi id dui iaculis, iaculis risus vitae, aliquet neque. Etiam luctus egestas purus ac iaculis. Proin ac placerat libero. Proin lobortis eros a lacus interdum cursus. Quisque dapibus id felis venenatis iaculis. In congue aliquam finibus. Sed id auctor lectus. Suspendisse elementum rhoncus sem interdum malesuada.</string>
+
+    <string-array name="category_major_recomendation">
+        <item>Introvert/Extrovert:</item>
+        <item>Sensing/Intuitive:</item>
+        <item>Thinking/Feeling:</item>
+        <item>Judging/Perceiving:</item>
+    </string-array>
+
+    <string-array name="major_recomendation_question">
+        <item>When you feel tired or stressed, how do you deal with it? taking time alone or seeking interaction with others to feel better?</item>
+        <item>When you have to make a big decision, how do you make that decision? rely on logic and analysis or your intuition?</item>
+        <item>When you are in a conflict, how do you resolve it? Prioritize feelings or logic, facts and data?</item>
+        <item>When you have a tight schedule, how do you handle it? Would you rather live your day more flexibly or create a structured plan?</item>
+    </string-array>
+
+
 
 
 

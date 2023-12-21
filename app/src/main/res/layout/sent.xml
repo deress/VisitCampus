@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textSize="18sp"
-            android:text="This is sent message"
+            android:text="@string/sent_message"
             android:textColor="@color/md_theme_light_onPrimary"/>
     </RelativeLayout>
 

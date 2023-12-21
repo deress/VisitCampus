@@ -1,4 +1,4 @@
-package com.dicoding.visitcampus.data.model
+package com.dicoding.visitcampus.data.request
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

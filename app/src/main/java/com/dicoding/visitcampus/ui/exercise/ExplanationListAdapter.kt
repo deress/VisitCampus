@@ -5,14 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.dicoding.visitcampus.data.model.exam.Exam
-import com.dicoding.visitcampus.data.model.exam.Explanation
 import com.dicoding.visitcampus.data.response.ResultExamResponse
-import com.dicoding.visitcampus.databinding.ExamItemLayoutBinding
 import com.dicoding.visitcampus.databinding.ExplanationItemLayoutBinding
 
 class ExplanationListAdapter: ListAdapter<ResultExamResponse, ExplanationListAdapter.ListViewHolder>(DIFF_CALLBACK) {
-    private lateinit var onItemClickCallback: OnItemClickCallback
     class ListViewHolder(val binding: ExplanationItemLayoutBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(explanation: ResultExamResponse){
             binding.tvQuestion.text = explanation.question
@@ -29,14 +25,6 @@ class ExplanationListAdapter: ListAdapter<ResultExamResponse, ExplanationListAda
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val exam = getItem(position)
         holder.bind(exam)
-
-        holder.itemView.setOnClickListener{
-            onItemClickCallback.onItemClicked()
-        }
-    }
-
-    interface OnItemClickCallback {
-        fun onItemClicked()
     }
 
     companion object  {

@@ -1,6 +1,9 @@
 package com.dicoding.visitcampus.data
 
 
+
+
+
 import android.os.Build
 import android.os.ext.SdkExtensions
 import android.util.Log
@@ -12,12 +15,18 @@ import com.dicoding.visitcampus.data.api.ApiConfig
 import com.dicoding.visitcampus.data.api.ApiService
 import com.dicoding.visitcampus.data.api.ExamService
 import com.dicoding.visitcampus.data.api.LoginService
+import com.dicoding.visitcampus.data.api.ModelService
 import com.dicoding.visitcampus.data.database.UnivDao
+import com.dicoding.visitcampus.data.database.UnivDatabase
 import com.dicoding.visitcampus.data.database.UnivEntity
-import com.dicoding.visitcampus.data.model.RequestPredictBody
+import com.dicoding.visitcampus.data.model.chatbot.Chatbot
 import com.dicoding.visitcampus.data.model.exam.Question
+import com.dicoding.visitcampus.data.model.major.MajorRecomendation
 import com.dicoding.visitcampus.data.pref.UserModel
 import com.dicoding.visitcampus.data.pref.UserPreference
+import com.dicoding.visitcampus.data.request.RequestChatbotBody
+import com.dicoding.visitcampus.data.request.RequestPredictBody
+import com.dicoding.visitcampus.data.response.ChatbotResponse
 import com.dicoding.visitcampus.data.response.ErrorResponse
 import com.dicoding.visitcampus.data.response.ExamsResponse
 import com.dicoding.visitcampus.data.response.MajorResponse
@@ -43,24 +52,33 @@ class VisitCampusRepository(
     private val loginService: LoginService,
     private val examService: ExamService,
     private val univDao: UnivDao,
-    private val appExecutors: AppExecutors
-
+    private val appExecutors: AppExecutors,
+    private val modelService: ModelService,
+    private val univDatabase: UnivDatabase
 
 ) {
     private val result = MediatorLiveData<Result<List<UnivEntity>>>()
     private val resultMajor = MediatorLiveData<Result<List<MajorResponse>>>()
     private val resultFilterUniv = MediatorLiveData<Result<List<UnivEntity>>>()
 
-    fun predict(requestPredictBody: RequestPredictBody): Flow<Result<PredictResponse>?> {
+    fun predict(requestPredictBody: RequestPredictBody, userId: String): Flow<Result<PredictResponse>?> {
         return flow {
             emit(Result.Loading)
             try {
-                val result = examService.predict(requestPredictBody)
+                val result = modelService.predict(requestPredictBody)
+                val resultPredict = MajorRecomendation(userId = userId, saintek = result.saintek, soshum = result.soshum)
+                univDatabase.majorRecomendationDao().insertMajorRecomendation(resultPredict)
                 emit(Result.Success(result))
             } catch (e: HttpException) {
-                Log.d("StoryRepository", "error: ${e.message.toString()} ")
+                val jsonInString = e.response()?.errorBody()?.string()
+                val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
+                emit(Result.Error(errorBody.message.toString()))
             }
         }.flowOn(Dispatchers.IO)
+    }
+
+    fun getMajorRecomendation(userId: String): LiveData<MajorRecomendation> {
+        return univDatabase.majorRecomendationDao().getMajorRecomendation(userId)
     }
 
     fun exams(): Flow<Result<List<ExamsResponse>>> {
@@ -70,7 +88,9 @@ class VisitCampusRepository(
                 val result = examService.exams()
                 emit(Result.Success(result))
             } catch (e: HttpException) {
-                Log.d("StoryRepository", "error: ${e.message.toString()} ")
+                val jsonInString = e.response()?.errorBody()?.string()
+                val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
+                emit(Result.Error(errorBody.message.toString()))
             }
         }.flowOn(Dispatchers.IO)
     }
@@ -82,7 +102,9 @@ class VisitCampusRepository(
                 val result = examService.getExamQuestions(id)
                 emit(Result.Success(result))
             } catch (e: HttpException) {
-                Log.d("StoryRepository", "error: ${e.message.toString()} ")
+                val jsonInString = e.response()?.errorBody()?.string()
+                val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
+                emit(Result.Error(errorBody.message.toString()))
             }
         }.flowOn(Dispatchers.IO)
     }
@@ -94,9 +116,33 @@ class VisitCampusRepository(
                 val result = examService.getResultExam(id)
                 emit(Result.Success(result))
             } catch (e: HttpException) {
-                Log.d("StoryRepository", "error: ${e.message.toString()} ")
+                val jsonInString = e.response()?.errorBody()?.string()
+                val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
+                emit(Result.Error(errorBody.message.toString()))
             }
         }.flowOn(Dispatchers.IO)
+    }
+
+    fun chatbot(userId: String, requestChatbotBody: RequestChatbotBody): LiveData<Result<ChatbotResponse>> = liveData {
+        emit(Result.Loading)
+        try {
+            val response = modelService.chatbot(requestChatbotBody)
+            Log.i("VisitCampusRepository", "response: $response")
+            univDatabase.chatbotDao().insertChatbot(Chatbot(userId = userId, chat = requestChatbotBody.question, isUser = true))
+            univDatabase.chatbotDao().insertChatbot(Chatbot(userId = userId, chat = response.answer, isUser = false))
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
+            emit(Result.Error(errorBody.message.toString()))
+        }
+    }
+
+    fun getChatbot(userId: String): LiveData<List<Chatbot>> {
+        return univDatabase.chatbotDao().getChatbot(userId)
+    }
+
+    suspend fun deleteChatbot(chatbot: Chatbot) {
+        univDatabase.chatbotDao().deleteChatbot(chatbot)
     }
 
     fun postRegister(name: String, email: String, password: String) = liveData {
@@ -287,9 +333,10 @@ class VisitCampusRepository(
             loginService: LoginService,
             examService: ExamService,
             univDao: UnivDao,
-            appExecutors: AppExecutors
+            appExecutors: AppExecutors,
+            modelService: ModelService,
+            univDatabase: UnivDatabase
 
-        ): VisitCampusRepository = VisitCampusRepository(userPreference, apiService, loginService, examService, univDao, appExecutors)
-
+        ): VisitCampusRepository = VisitCampusRepository(userPreference, apiService, loginService, examService, univDao, appExecutors, modelService, univDatabase)
     }
 }

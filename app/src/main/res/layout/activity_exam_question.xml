@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:gravity="center"
-            android:text="Which internet company began life as an online bookstore called &#039;Cadabra&#039;?"
+            android:text="@string/question"
             android:textColor="#363A43"
             android:textSize="22sp">
         </TextView>
@@ -76,7 +76,7 @@
             android:padding="15dp"
             android:textColor="#7A8089"
             android:textSize="18sp"
-            tools:text="Apple">
+            tools:text="@string/answer">
         </TextView>
 
         <TextView
@@ -89,7 +89,7 @@
             android:padding="15dp"
             android:textColor="#7A8089"
             android:textSize="18sp"
-            tools:text="Apple">
+            tools:text="@string/answer">
         </TextView>
 
         <TextView
@@ -102,7 +102,7 @@
             android:padding="15dp"
             android:textColor="#7A8089"
             android:textSize="18sp"
-            tools:text="Apple">
+            tools:text="@string/answer">
         </TextView>
 
         <TextView
@@ -115,7 +115,7 @@
             android:padding="15dp"
             android:textColor="#7A8089"
             android:textSize="18sp"
-            tools:text="Apple">
+            tools:text="@string/answer">
         </TextView>
 
         <Button
@@ -124,7 +124,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@color/md_theme_light_primary"
-            android:text="SUBMIT"
+            android:text="@string/submit"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             android:textStyle="bold">

@@ -79,9 +79,9 @@ class ExamQuestionActivity : AppCompatActivity(), View.OnClickListener {
         checkAnswer()
 
         if (mCurrentPosition == mQuestionList!!.size) {
-            binding.btnSubmit.text = "Finish"
+            binding.btnSubmit.text = getString(R.string.finish)
         } else {
-            binding.btnSubmit.text = "Submit"
+            binding.btnSubmit.text = getString(R.string.submit)
         }
 
         binding.progressBar.progress = mCurrentPosition
@@ -155,7 +155,7 @@ class ExamQuestionActivity : AppCompatActivity(), View.OnClickListener {
                             Log.i("ExamQuestionActivity", "correctTotal: $correctTotal")
                             Toast.makeText(
                                 this,
-                                "You have successfully completed the Exam", Toast.LENGTH_SHORT
+                                getString(R.string.toast_exam_completed), Toast.LENGTH_SHORT
                             ).show()
                             val intent = Intent(this, ResultQuestionActivity::class.java)
                             intent.putExtra(ResultQuestionActivity.EXTRA_SCORE, correctTotal)

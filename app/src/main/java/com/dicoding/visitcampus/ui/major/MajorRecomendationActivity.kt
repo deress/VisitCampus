@@ -2,6 +2,7 @@ package com.dicoding.visitcampus.ui.major
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -13,28 +14,22 @@ import androidx.activity.viewModels
 import androidx.core.widget.doAfterTextChanged
 import com.dicoding.visitcampus.R
 import com.dicoding.visitcampus.data.Result
-import com.dicoding.visitcampus.data.model.RequestPredictBody
+import com.dicoding.visitcampus.data.request.RequestPredictBody
 import com.dicoding.visitcampus.databinding.ActivityMajorRecomendationBinding
 import com.dicoding.visitcampus.ui.ViewModelFactory
+import com.dicoding.visitcampus.ui.main.MainActivity
+import com.dicoding.visitcampus.ui.main.MainViewModel
 import com.google.android.material.appbar.MaterialToolbar
 
 class MajorRecomendationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMajorRecomendationBinding
-    private val categories: Array<String> =
-        arrayOf(
-            "Introvert/Extrovert:",
-            "Sensing/Intuitive:",
-            "Thinking/Feeling:",
-            "Judging/Perceiving:")
-    private val questions: Array<String> =
-        arrayOf(
-            "Ketika anda merasa lelah atau stres, bagaimana anda mengatasinya? mengambil waktu sendiri atau mencari interaksi dengan orang lain untuk merasa lebih baik?",
-            "Ketika anda harus mengambil keputusan besar, bagaimana cara anda mengambil keputusan tersebut? mengandalkan logika dan analisis atau intuisi anda?",
-            "Ketika anda berada dalam suatu konflik, bagaimana cara anda menyelesaikannya? mengutamakan perasaan atau logika, fakta dan data?",
-            "Ketika memiliki jadwal yang ketat, bagaimana anda menangani hal tersebut? Lebih suka menjalani hari dengan lebih fleksibel atau membuat rencana yang terstruktur?")
+
     private var currentQuestion = 0
     private val result: ArrayList<String> = arrayListOf()
     private val majorRecomendationViewModel: MajorRecomendationViewModel by viewModels {
+        ViewModelFactory.getInstance(this)
+    }
+    private val viewModel by viewModels<MainViewModel> {
         ViewModelFactory.getInstance(this)
     }
 
@@ -42,6 +37,12 @@ class MajorRecomendationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMajorRecomendationBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val categories = resources.getStringArray(R.array.category_major_recomendation)
+        val questions = resources.getStringArray(R.array.major_recomendation_question)
+
+        Log.i("MajorRecomendationActivity", "categories: $categories")
+        Log.i("MajorRecomendationActivity", "categories: $questions")
 
         val toolbar : MaterialToolbar = binding.topAppBar
         setSupportActionBar(toolbar)
@@ -71,7 +72,9 @@ class MajorRecomendationActivity : AppCompatActivity() {
                 Log.i("MajorRecomendationActivity", "result: $result")
                 Log.i("MajorRecomendationActivity", "answers: $answers")
 
-                majorRecomendationViewModel.predict(answers)
+                viewModel.getSession().observe(this) {user ->
+                    majorRecomendationViewModel.predict(answers, user.userId)
+                }
                 majorRecomendationViewModel.predictResult.observe(this) { it ->
                     if (it != null) {
                         when (it) {
@@ -91,6 +94,11 @@ class MajorRecomendationActivity : AppCompatActivity() {
                             }
                             is Result.Error -> {
                                 showLoading(false)
+                                Toast.makeText(
+                                    this,
+                                    it.error,
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
                     }
@@ -145,6 +153,9 @@ class MajorRecomendationActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
         this@MajorRecomendationActivity.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 }

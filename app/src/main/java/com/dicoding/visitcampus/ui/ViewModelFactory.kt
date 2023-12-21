@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.visitcampus.data.VisitCampusRepository
 import com.dicoding.visitcampus.di.Injection
+import com.dicoding.visitcampus.ui.chatbot.ChatbotViewModel
 import com.dicoding.visitcampus.ui.home.HomeViewModel
 import com.dicoding.visitcampus.ui.login.LoginViewModel
 import com.dicoding.visitcampus.ui.main.MainViewModel
@@ -45,6 +46,9 @@ class ViewModelFactory private constructor(private val repository: VisitCampusRe
             }
             modelClass.isAssignableFrom(ExamViewModel::class.java) -> {
                 ExamViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(ChatbotViewModel::class.java) -> {
+                ChatbotViewModel(repository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
